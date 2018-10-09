@@ -17,14 +17,11 @@ const login = (req, user) => {
     });
 };
 
-
 router.post('/signup', (req, res, next) => {
 
-    const { username, password } = req.body;
+    const { username, password, role, email } = req.body;
 
-    if (!username || !password) {
-        next(new Error('You must provide valid credentials'));
-    }
+    if (!username || !password) next(new Error('You must provide valid credentials'));
 
     User.findOne({ username })
         .then(foundUser => {
@@ -35,7 +32,9 @@ router.post('/signup', (req, res, next) => {
 
             return new User({
                 username,
-                password: hashPass
+                password: hashPass,
+                role,
+                email
             }).save();
         })
         .then(savedUser => login(req, savedUser))

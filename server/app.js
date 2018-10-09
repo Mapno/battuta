@@ -1,5 +1,4 @@
 require('dotenv').config();
-
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -22,12 +21,12 @@ mongoose
 
 const app = express();
 
-var whitelist = [
+const whitelist = [
     'http://localhost:3000'
 ];
-var corsOptions = {
+const corsOptions = {
     origin: function (origin, callback) {
-        var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+        const originIsWhitelisted = whitelist.indexOf(origin) !== -1;
         callback(null, originIsWhitelisted);
     },
     credentials: true
@@ -53,13 +52,9 @@ app.use(session({
 }));
 require('./passport')(app);
 
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
 
 const authRouter = require('./routes/auth');
 app.use('/api/auth', authRouter);
-
-
 
 module.exports = app;

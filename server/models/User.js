@@ -4,7 +4,7 @@ require("mongoose-type-email");
 
 const userSchema = new Schema(
     {
-        name: String,
+        username: String,
         password: String,
         email: { type: mongoose.SchemaTypes.Email },
         role: [{ type: String, enum: ["client", "carrier", "admin"] }],
