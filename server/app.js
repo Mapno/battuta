@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({
 app.use(cookieParser());
 
 app.use(session({
-    secret: 'angular auth passport secret shh',
+    secret: 'react auth passport secret shh',
     resave: true,
     saveUninitialized: true,
     cookie: {
