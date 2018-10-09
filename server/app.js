@@ -20,12 +20,8 @@ mongoose
         console.error('Error connecting to mongo', err)
     });
 
-const app_name = require('./package.json').name;
-const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
-
 const app = express();
 
-// Middleware Setup
 var whitelist = [
     'http://localhost:3000'
 ];
@@ -38,15 +34,12 @@ var corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// Middleware Setup
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
-
-// Express View engine setup
 
 app.use(session({
     secret: 'angular auth passport secret shh',
@@ -60,25 +53,12 @@ app.use(session({
 }));
 require('./passport')(app);
 
-
-
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
-
-
-
-// default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
-
-
 
 const authRouter = require('./routes/auth');
-const genericCrud = require('./routes/genericCRUD');
 app.use('/api/auth', authRouter);
-app.use('/api/news', genericCrud(require('./models/News')));
-app.use('/api/user', genericCrud(require('./models/User')));
 
 
 
