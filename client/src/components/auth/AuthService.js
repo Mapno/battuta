@@ -23,10 +23,10 @@ class AuthService {
     .then(res => res.data)
   }
 
-  loggedin = () => {
-    return this.service.get('/currentUser',)
-    .then(res => res.data)
-  }
+  // loggedin = () => {
+  //   return this.service.get('/',)
+  //   .then(res => res.data)
+  // }
 
   logout = () => {
     return this.service.get('/logout',)
