@@ -1,13 +1,11 @@
-
 import React, { Component } from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
-
-import Navbar from './components/navbar/Navbar';
+// import Navbar from './components/navbar/Navbar';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import AuthService from './components/auth/AuthService';
-import Contents from './components/contents/Contents'
+// import Contents from './components/contents/Contents'
 
 class App extends Component {
 
@@ -53,8 +51,8 @@ class App extends Component {
       return (
         <div className="App">
           <header className="App-header">
-            <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-            <Contents></Contents>
+            {/* <Navbar userInSession={this.state.loggedInUser} logout={this.logout} /> */}
+            {/* <Contents></Contents> */}
           </header>
         </div>
       );
@@ -62,7 +60,7 @@ class App extends Component {
       return (
         <div className="App">
           <header className="App-header">
-            <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
+            {/* <Navbar userInSession={this.state.loggedInUser} logout={this.logout} /> */}
             <Switch>
               <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
               <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>

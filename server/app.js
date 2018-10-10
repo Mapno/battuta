@@ -22,7 +22,7 @@ mongoose
 const app = express();
 
 const whitelist = [
-    'http://localhost:3000'
+    'http://localhost:3001'
 ];
 const corsOptions = {
     origin: function (origin, callback) {

@@ -30,13 +30,13 @@ class Login extends Component {
           password: password,
           error: true
         });
-      })
-  }
+      });
+  };
 
   handleChange = (event) => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
-  }
+  };
 
   render() {
 

@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const User = require('../models/User');
 const passport = require('passport');
+const Vehicle = require('../models/Vehicle');
 
 
 const login = (req, user) => {
@@ -19,26 +20,57 @@ const login = (req, user) => {
 
 router.post('/signup', (req, res, next) => {
 
-    const { username, password, email } = req.body;
+    const { username, password, email, brand, model, color, registration, carrier } = req.body;
 
     if (!username || !password) next(new Error('You must provide valid credentials'));
 
-    User.findOne({ username })
-        .then(foundUser => {
-            if (foundUser) throw new Error('Username already exists');
+    if (!carrier) {
+        User.findOne({ username })
+            .then(foundUser => {
+                if (foundUser) throw new Error('Username already exists');
 
-            const salt = bcrypt.genSaltSync(10);
-            const hashPass = bcrypt.hashSync(password, salt);
+                const salt = bcrypt.genSaltSync(10);
+                const hashPass = bcrypt.hashSync(password, salt);
 
-            return new User({
-                username,
-                password: hashPass,
-                email
-            }).save();
-        })
-        .then(savedUser => login(req, savedUser))
-        .then(user => res.json({ status: 'signup & login successfully', user }))
-        .catch(e => next(e));
+                return new User({
+                    username,
+                    password: hashPass,
+                    email
+                }).save();
+            })
+            .then(savedUser => login(req, savedUser))
+            .then(user => res.json({ status: 'signup & login successfully', user }))
+            .catch(e => next(e));
+    } else {
+        User.findOne({ username })
+            .then(foundUser => {
+                if (foundUser) throw new Error('Username already exists');
+
+                const salt = bcrypt.genSaltSync(10);
+                const hashPass = bcrypt.hashSync(password, salt);
+
+                return new User({
+                    username,
+                    password: hashPass,
+                    email
+                }).save()
+                    .then(({ _id }) => {
+                        return new Vehicle({
+                            brand,
+                            model,
+                            color,
+                            registration,
+                            owner: _id
+                        }).save()
+                        .then((vehicle) => {
+                            return User.findByIdAndUpdate(vehicle.owner, { vehicle: vehicle._id })
+                        })
+                    })
+            })
+            .then(savedUser => login(req, savedUser))
+            .then(user => res.json({ status: 'signup & login successfully', user }))
+            .catch(e => next(e));
+    }
 });
 
 

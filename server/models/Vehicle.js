@@ -6,7 +6,7 @@ const vehicleSchema = new Schema(
         brand: String,
         model: String,
         registrationNumber: String,
-        owner: {type: Schema.Types.ObjectId},
+        owner: {type: Schema.Types.ObjectId, ref: 'User'},
         color: String,
     },
     {
