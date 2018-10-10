@@ -54,18 +54,18 @@ router.post('/signup', (req, res, next) => {
                     password: hashPass,
                     email
                 }).save()
-                    .then(({ _id }) => {
-                        return new Vehicle({
-                            brand,
-                            model,
-                            color,
-                            registration,
-                            owner: _id
-                        }).save()
-                        .then((vehicle) => {
-                            return User.findByIdAndUpdate(vehicle.owner, { vehicle: vehicle._id })
-                        })
-                    })
+            })
+            .then(({ _id }) => {
+                return new Vehicle({
+                    brand,
+                    model,
+                    color,
+                    registration,
+                    owner: _id
+                }).save()
+            })
+            .then((vehicle) => {
+                return User.findByIdAndUpdate(vehicle.owner, { vehicle: vehicle._id })
             })
             .then(savedUser => login(req, savedUser))
             .then(user => res.json({ status: 'signup & login successfully', user }))
