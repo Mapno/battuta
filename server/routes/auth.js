@@ -44,7 +44,7 @@ router.post('/signup', (req, res, next) => {
     } else {
         User.findOne({ username })
             .then(foundUser => {
-                if (foundUser) throw new Error('Username already exists');
+                if (foundUser.username === username || foundUser.email === email) throw new Error('User already exists');
 
                 const salt = bcrypt.genSaltSync(10);
                 const hashPass = bcrypt.hashSync(password, salt);
@@ -56,16 +56,21 @@ router.post('/signup', (req, res, next) => {
                 }).save()
             })
             .then(({ _id }) => {
-                return new Vehicle({
-                    brand,
-                    model,
-                    color,
-                    registration,
-                    owner: _id
-                }).save()
+                Vehicle.findOne({ registrationNumber: registration })
+                    .then((vehicle) => {
+                        if (vehicle) throw new Error('Vehicle already registered');
+
+                        return new Vehicle({
+                            brand,
+                            model,
+                            color,
+                            registration,
+                            owner: _id
+                        }).save()
+                    });
             })
             .then((vehicle) => {
-                return User.findByIdAndUpdate(vehicle.owner, { vehicle: vehicle._id })
+                return User.findByIdAndUpdate(vehicle.owner, { vehicle: vehicle._id, $push: { role: 'carrier' } })
             })
             .then(savedUser => login(req, savedUser))
             .then(user => res.json({ status: 'signup & login successfully', user }))
