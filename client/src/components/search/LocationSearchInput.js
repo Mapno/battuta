@@ -14,12 +14,15 @@ class LocationSearchInput extends Component {
     handleSelect = address => {
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
-            .then(latLng => console.log('Success', latLng))
+            .then(latLng => {
+                // console.log('Success', latLng)
+                this.props.handleSelect(latLng, this.props.departure)
+            })
             .catch(error => console.error('Error', error));
     };
 
     resetClick = () => {
-        this.setState({address: ''})
+        this.setState({ address: '' })
     }
 
     render() {
@@ -49,7 +52,7 @@ class LocationSearchInput extends Component {
                                     ? { backgroundColor: '#fafafa', cursor: 'pointer' }
                                     : { backgroundColor: '#ffffff', cursor: 'pointer' };
                                 return (
-                                    <div {...getSuggestionItemProps(suggestion, {className,style,})}>
+                                    <div {...getSuggestionItemProps(suggestion, { className, style, })}>
                                         <span>{suggestion.description}</span>
                                     </div>
                                 );
