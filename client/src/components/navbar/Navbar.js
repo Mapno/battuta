@@ -22,7 +22,7 @@ class Navbar extends Component {
             return (
                 <nav className="navbar bg-light">
                     <ul>
-                        <li><a onClick={this.handleLogout}>Logout</a></li>
+                        <li><Link to="/"onClick={this.handleLogout}>Logout</Link></li>
                     </ul>
 
                     <h2>Welcome, {this.state.loggedInUser.username}</h2>

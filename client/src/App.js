@@ -7,16 +7,17 @@ import Login from './components/auth/Login';
 import AuthService from './components/auth/AuthService';
 // import Contents from './components/contents/Contents';
 import HomePage from './components/contents/HomePage';
+import Footer from './footer/Footer';
 
 class App extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
     this.state = { loggedInUser: null };
     this.service = new AuthService();
   }
 
-  getTheUser= (userObj) => {
+  getTheUser = (userObj) => {
     this.setState({
       loggedInUser: userObj
     })
@@ -24,37 +25,39 @@ class App extends Component {
 
   logout = () => {
     this.service.logout()
-    .then(() => {
-      this.setState({ loggedInUser: null });
-    })
+      .then(() => {
+        this.setState({ loggedInUser: null });
+      })
   }
 
-  fetchUser(){
-    if( this.state.loggedInUser === null ){
+  fetchUser() {
+    if (this.state.loggedInUser === null) {
       this.service.loggedin()
-      .then(response =>{
-        this.setState({
-          loggedInUser:  response
-        }) 
-      })
-      .catch( err =>{
-        this.setState({
-          loggedInUser:  false
-        }) 
-      })
+        .then(response => {
+          this.setState({
+            loggedInUser: response
+          })
+        })
+        .catch(err => {
+          this.setState({
+            loggedInUser: false
+          })
+        })
     }
   }
 
   render() {
     // this.fetchUser()
 
-    if(this.state.loggedInUser){
+    if (this.state.loggedInUser) {
       return (
         <div className="App">
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-            {/* <Contents></Contents> */}
           </header>
+          {/* <Contents></Contents> */}
+
+          <Footer></Footer>
         </div>
       );
     } else {
@@ -62,10 +65,11 @@ class App extends Component {
         <div className="">
           <header className="">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
-              <Route exact path='/' render={() => <HomePage></HomePage>}></Route>
-              <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser}/>}/>
-              <Route exact path='/login' render={() => <Login getUser={this.getTheUser}/>}/>
           </header>
+          <Route exact path='/' render={() => <HomePage></HomePage>}></Route>
+          <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
+          <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
+          <Footer></Footer>
         </div>
       );
     }

@@ -14,6 +14,7 @@ class HomePage extends Component {
             <div className="d-flex justify-content-center">
                 <div className="col-md-6 my-4">
                     <LocationSearchInput></LocationSearchInput>
+                    
                 </div>
             </div>
         );

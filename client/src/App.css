@@ -9,6 +9,10 @@
     outline: none;
 }
 
+.search-input-container {
+    position: relative;
+}
+
 .autocomplete-dropdown-container {
     border-bottom: honeydew;
     border-left: honeydew;
@@ -32,7 +36,7 @@
     cursor: pointer;
 }
 
-.clear-button{
+.clear-button {
     position: absolute;
     right: 16px;
     top: 50%;
@@ -42,10 +46,21 @@
     outline: none;
     font-weight: 600;
     color: #999;
+    cursor: pointer;
 }
 
+.search-input:not(:valid)~.clear-button {
+    display: none;
+}
 
+.footer {
+    height: 6vh;
+}
 
-.search-input:not(:valid) ~ .clear-button {
-	display: none;
+.footer-div {
+    height: 100%;
+}
+
+.footer-text {
+    text-align: center;
 }

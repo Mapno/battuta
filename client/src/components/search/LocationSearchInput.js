@@ -18,6 +18,10 @@ class LocationSearchInput extends Component {
             .catch(error => console.error('Error', error));
     };
 
+    resetClick = () => {
+        this.setState({address: ''})
+    }
+
     render() {
         return (
             <PlacesAutocomplete value={this.state.address} onChange={this.handleChange} onSelect={this.handleSelect}>
@@ -25,12 +29,14 @@ class LocationSearchInput extends Component {
                     <div>
                         <div className="search-bar-container">
                             <div className="search-input-container">
-                                <input 
-                                {...getInputProps({ placeholder: 'Search Places ...', className: 'location-search-input', })}
-                                className="search-input"
-                                required
-                                />
-                                <button className="clear-button" type="reset">x</button>
+                                <form>
+                                    <input
+                                        {...getInputProps({ placeholder: 'Search Places ...', className: 'location-search-input', })}
+                                        className="search-input"
+                                        required
+                                    />
+                                    <button className="clear-button" onClick={() => this.resetClick()}>x</button>
+                                </form>
                             </div>
                         </div>
                         <div className="autocomplete-dropdown-container">
@@ -43,12 +49,7 @@ class LocationSearchInput extends Component {
                                     ? { backgroundColor: '#fafafa', cursor: 'pointer' }
                                     : { backgroundColor: '#ffffff', cursor: 'pointer' };
                                 return (
-                                    <div
-                                        {...getSuggestionItemProps(suggestion, {
-                                            className,
-                                            style,
-                                        })}
-                                    >
+                                    <div {...getSuggestionItemProps(suggestion, {className,style,})}>
                                         <span>{suggestion.description}</span>
                                     </div>
                                 );
