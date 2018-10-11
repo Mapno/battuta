@@ -87,3 +87,8 @@
     font-size: 2vh;
     font-weight: bold;
 }
+
+.create-container {
+    height: 80vh;
+    margin: 0 auto;
+}

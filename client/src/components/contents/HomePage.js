@@ -10,8 +10,8 @@ class HomePage extends Component {
         }
     }
 
-    handleSelect = (latLng, departure) => {
-        departure ? this.setState({ departure: latLng }) : this.setState({ arrival: latLng })
+    handleSelect = (latLng, departure, address) => {
+        departure ? this.setState({ departure: { ...latLng, address } }) : this.setState({ arrival: { ...latLng, address } })
     }
 
     render() {

@@ -5,9 +5,9 @@ import Navbar from './components/navbar/Navbar';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import AuthService from './components/auth/AuthService';
-// import Contents from './components/contents/Contents';
 import HomePage from './components/contents/HomePage';
 import Footer from './footer/Footer';
+import { CreateRoute } from './components/Routes/CreateRoute';
 
 class App extends Component {
 
@@ -55,7 +55,6 @@ class App extends Component {
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
-          {/* <Contents></Contents> */}
 
           <Footer></Footer>
         </div>
@@ -69,6 +68,7 @@ class App extends Component {
           <Route exact path='/' render={() => <HomePage></HomePage>}></Route>
           <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
           <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
+          <Route exact path='/mishuevos' render={() => <CreateRoute></CreateRoute>} />
           <Footer></Footer>
         </div>
       );

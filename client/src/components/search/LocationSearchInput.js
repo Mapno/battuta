@@ -16,7 +16,7 @@ class LocationSearchInput extends Component {
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
             .then(latLng => {
-                this.props.handleSelect(latLng, this.props.departure)
+                this.props.handleSelect(latLng, this.props.departure, this.state.address);
             })
             .catch(error => console.error('Error', error));
     };
