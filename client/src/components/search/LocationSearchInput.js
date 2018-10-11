@@ -29,18 +29,16 @@ class LocationSearchInput extends Component {
         return (
             <PlacesAutocomplete value={this.state.address} onChange={this.handleChange} onSelect={this.handleSelect}>
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    <div>
-                        <div className="search-bar-container">
-                            <div className="search-input-container">
-                                <form>
-                                    <input
-                                        {...getInputProps({ placeholder: 'Search Places ...', className: 'location-search-input', })}
-                                        className="search-input"
-                                        required
-                                    />
-                                    <button className="clear-button" onClick={() => this.resetClick()}>x</button>
-                                </form>
-                            </div>
+                    <div className="search-bar-container">
+                        <div className="search-input-container">
+                            <form>
+                                <input
+                                    {...getInputProps({ placeholder: 'Search Places ...', className: 'location-search-input', })}
+                                    className="search-input"
+                                    required
+                                />
+                                <button className="clear-button" onClick={() => this.resetClick()}>x</button>
+                            </form>
                         </div>
                         <div className="autocomplete-dropdown-container">
                             {loading && <div>Loading...</div>}

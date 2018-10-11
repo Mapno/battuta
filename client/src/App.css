@@ -20,6 +20,9 @@
     border-top: 1px solid #e6e6e6;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     border-radius: 0 0 2px 2px;
+    width: 100%;
+    position: absolute;
+    top: 56px;
 }
 
 .suggestion-item {
@@ -63,4 +66,19 @@
 
 .footer-text {
     text-align: center;
+}
+
+.location-info {
+    font-size: 2vh;
+    font-weight: bold;
+}
+
+.search-container {
+    height: 40vh;
+    margin: 0 auto;
+}
+
+.search-bar-container {
+    position: relative;
+    width: 100%;
 }
