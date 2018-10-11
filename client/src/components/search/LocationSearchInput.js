@@ -12,10 +12,10 @@ class LocationSearchInput extends Component {
     };
 
     handleSelect = address => {
+        this.setState({address: address})
         geocodeByAddress(address)
             .then(results => getLatLng(results[0]))
             .then(latLng => {
-                // console.log('Success', latLng)
                 this.props.handleSelect(latLng, this.props.departure)
             })
             .catch(error => console.error('Error', error));

@@ -82,3 +82,8 @@
     position: relative;
     width: 100%;
 }
+
+.title {
+    font-size: 2vh;
+    font-weight: bold;
+}
