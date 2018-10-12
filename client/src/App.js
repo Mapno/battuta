@@ -7,7 +7,7 @@ import Login from './components/auth/Login';
 import AuthService from './components/auth/AuthService';
 import HomePage from './components/contents/HomePage';
 import Footer from './footer/Footer';
-import { CreateRoute } from './components/Routes/CreateRoute';
+import { CreateRoute } from './components/routes/CreateRoute';
 
 class App extends Component {
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import LocationSearchInput from '../search/LocationSearchInput';
 import MapContainer from './MapContainer';
+import _ from 'lodash'
 
 export class CreateRoute extends React.Component {
     constructor() {
@@ -18,10 +19,12 @@ export class CreateRoute extends React.Component {
     }
 
     resetClick = (departure) => {
-        departure ? this.setState({departure: {}}) : this.setState({arrival: {}})
+        departure ? this.setState({ departure: {} }) : this.setState({ arrival: {} })
     }
 
     render() {
+        // let waypointsForm;
+        // if( !_.isEqual(this.props.arrival, {}) && !_.isEqual(this.props.departure, {})) waypointsForm = <WaypointsForm></WaypointsForm>
         return (
             <div className="d-flex justify-content-center aling-items-center create-container">
                 <div className="my-4 d-flex flex-row justify-content-between align-items-center row container border">
@@ -33,6 +36,10 @@ export class CreateRoute extends React.Component {
                         <div className="d-flex flex-column justify-content-center align-items-center container" style={{ zIndex: 2 }}>
                             <span className="my-2 location-info">Arrival</span>
                             <LocationSearchInput handleSelect={this.handleSelect} departure={false} resetClick={this.resetClick}></LocationSearchInput>
+                        </div>
+                        {/* {waypointsForm} */}
+                        <div className="col-1 d-flex flex-column justify-content-between align-items-center mt-5">
+                            <button className="btn btn-dark" type="submit">Continue</button>
                         </div>
                     </div>
                     <MapContainer {...this.state}></MapContainer>
