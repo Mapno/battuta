@@ -13,10 +13,6 @@ export default class MapContainer extends React.Component {
         };
     }
 
-    componentWillMount() {
-        // .then(() => console.log(this.state.center))
-    }
-
     componentDidMount = () => {
         localize()
             .then(center => {

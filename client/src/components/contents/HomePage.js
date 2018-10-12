@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import LocationSearchInput from '../search/LocationSearchInput'
+import DateInput from '../search/DateInput';
 
 class HomePage extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class HomePage extends Component {
                     </div>
                     <div className="col-2 d-flex flex-column justify-content-between align-items-center">
                         <span className="my-2 location-info">Date</span>
-                        <LocationSearchInput handleSelect={this.handleSelect} departure={false}></LocationSearchInput>
+                        <DateInput></DateInput>
                     </div>
                     <div className="col-1 d-flex flex-column justify-content-between align-items-center mt-5">
                         <button className="btn btn-dark">Search</button>

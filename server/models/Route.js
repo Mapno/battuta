@@ -5,6 +5,8 @@ const routeSchema = new Schema(
     {
         departureTime: Date,
         driver: {type: Schema.Types.ObjectId, ref: 'User'},
+        departure: {},
+        arrival: {},
         stops: [{ type: { type: String }, coordinates: [Number] }],
         aviableSpace: Number
     },
