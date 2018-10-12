@@ -14,17 +14,21 @@ class HomePage extends Component {
         departure ? this.setState({ departure: { ...latLng, address } }) : this.setState({ arrival: { ...latLng, address } })
     }
 
+    resetClick = (departure) => {
+        departure ? this.setState({departure: {}}) : this.setState({arrival: {}})
+    }
+
     render() {
         return (
             <div className="d-flex justify-content-center aling-items-center search-container">
                 <div className="my-4 d-flex flex-row justify-content-between align-items-center row container">
                     <div className="col-4 d-flex flex-column justify-content-between align-items-center">
                         <span className="my-2 location-info">Departure</span>
-                        <LocationSearchInput handleSelect={this.handleSelect} departure={true}></LocationSearchInput>
+                        <LocationSearchInput handleSelect={this.handleSelect} departure={true} resetClick={this.resetClick}></LocationSearchInput>
                     </div>
                     <div className="col-4 d-flex flex-column justify-content-between align-items-center">
                         <span className="my-2 location-info">Arrival</span>
-                        <LocationSearchInput handleSelect={this.handleSelect} departure={false}></LocationSearchInput>
+                        <LocationSearchInput handleSelect={this.handleSelect} departure={false} resetClick={this.resetClick}></LocationSearchInput>
                     </div>
                     <div className="col-2 d-flex flex-column justify-content-between align-items-center">
                         <span className="my-2 location-info">Date</span>

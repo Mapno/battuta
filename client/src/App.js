@@ -68,7 +68,7 @@ class App extends Component {
           <Route exact path='/' render={() => <HomePage></HomePage>}></Route>
           <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
           <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
-          <Route exact path='/mishuevos' render={() => <CreateRoute></CreateRoute>} />
+          <Route exact path='/maps' render={() => <CreateRoute></CreateRoute>} />
           <Footer></Footer>
         </div>
       );

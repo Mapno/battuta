@@ -23,6 +23,7 @@ class LocationSearchInput extends Component {
 
     resetClick = () => {
         this.setState({ address: '' })
+        this.props.resetClick(this.props.departure)
     }
 
     render() {
