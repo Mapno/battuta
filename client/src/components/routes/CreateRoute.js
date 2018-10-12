@@ -1,7 +1,6 @@
 import React from 'react';
 import LocationSearchInput from '../search/LocationSearchInput';
 import MapContainer from './MapContainer';
-import _ from 'lodash';
 import DateInput from '../search/DateInput';
 
 export class CreateRoute extends React.Component {
@@ -40,15 +39,17 @@ export class CreateRoute extends React.Component {
                 <div className="d-flex justify-content-center aling-items-center create-container">
                     <div className="my-4 d-flex flex-row justify-content-between align-items-center row container border">
                         <div className="d-flex flex-column justify-content-center align-items-center border col-md-6 px-5 pb-5">
-                            <div className="d-flex flex-column justify-content-center align-items-center container my-5">
-                                <span className="my-2 location-info">Departure time</span>
+                            <div className="d-flex flex-column justify-content-start align-items-center container my-5">
+                                <span className="my-2 location-info">Departure date &amp; time</span>
                                 <DateInput></DateInput>
                             </div>
-                            <div>
-
+                            <div className="d-flex flex-column justify-content-center align-items-center container-fluid my-5">
+                                <span className="my-2 location-info">Available space</span>
+                                <div className="d-flex flex-row justify-content-center align-items-center space-wrapper">
+                                    <input type="text" placeholder="meters" id="space" />
+                                    <input type="text" id="spacetwo" value="m²" disabled />
+                                </div>
                             </div>
-
-
                             <div className="d-flex flex-row justify-content-between">
                                 <div className="col-1 d-flex flex-column justify-content-between align-items-center mt-5">
                                     <button className="btn btn-light" onClick={this.backwardClick}>Back</button>
