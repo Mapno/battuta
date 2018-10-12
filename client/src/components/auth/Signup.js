@@ -54,25 +54,34 @@ class Signup extends Component {
         let carrierForm;
         if (this.state.carrier) carrierForm = <CarrierForm handleChange={this.handleChange} brand={this.state.brand} model={this.state.model} color={this.state.color} registration={this.state.registration}></CarrierForm>
         return (
-            <div>
+            <div className="d-flex flex-column align-items-center justify-content-between my-3">
                 <h3>Welcome!, create your account next:</h3>
 
-                <form onSubmit={this.handleFormSubmit}>
-                    <fieldset>
-                        <label>Username:</label>
-                        <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+                <form onSubmit={this.handleFormSubmit} className="container row d-flex flex-column align-items-center">
+                    <fieldset className="d-flex flex-column col-4">
+                        <div className="d-flex flex-row my-3 justify-content-around">
+                            <label className="signup-label">Username:</label>
+                            <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+                        </div>
+                        <div className="d-flex flex-row my-3 justify-content-around">
+                            <label className="signup-label">Password:</label>
+                            <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+                        </div>
+                        <div className="d-flex flex-row my-3 justify-content-around">
+                            <label className="signup-label">Email:</label>
+                            <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
+                        </div>
+                        <div className="d-flex flex-row my-3 justify-content-around">
+                            <label className="signup-label">Become a Carrier:</label>
+                            <div class="become-button">
+                                <input type="checkbox" value="None" id="become-button" name="check"  onChange={e => this.handleChange(e)}/>
+                                <label for="become-button"></label>
+                            </div>
+                        </div>
 
-                        <label>Password:</label>
-                        <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-
-                        <label>Email:</label>
-                        <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
-
-                        <label>Become a Carrier:</label>
-                        <input type="checkbox" name="carrier" value={this.state.carrier} onChange={e => this.handleChange(e)}></input>
                         {carrierForm}
                     </fieldset>
-                    <input type="submit" value="Sign up" />
+                    <input type="submit" value="Sign up" className="btn btn-dark col-2" />
                 </form>
 
             </div>
