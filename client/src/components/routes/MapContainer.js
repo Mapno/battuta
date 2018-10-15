@@ -61,8 +61,9 @@ export default class MapContainer extends React.Component {
     };
 
     componentDidUpdate = () => {
-        if (!_.isEqual(this.state.map, {}) && !_.isEqual(this.state.directionsDisplay, {}) && !_.isEqual(this.state.directionsService, {}))
+        if (!_.isEqual(this.state.map, {}) && !_.isEqual(this.state.directionsDisplay, {}) && !_.isEqual(this.state.directionsService, {})){
             _.isEqual(this.props.arrival, {}) ? this.onMarker() : this.onRoute();
+        }
     };
 
     render() {

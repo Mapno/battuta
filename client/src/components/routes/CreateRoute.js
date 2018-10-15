@@ -2,6 +2,7 @@ import React from 'react';
 import LocationSearchInput from '../search/LocationSearchInput';
 import MapContainer from './MapContainer';
 import DateInput from '../search/DateInput';
+import RouteService from './RouteService';
 
 export class CreateRoute extends React.Component {
     constructor() {
@@ -9,37 +10,45 @@ export class CreateRoute extends React.Component {
         this.state = {
             arrival: {},
             departure: {},
-            date: '',
+            date: {},
             // waypoints: []
-            carrierForm: false
+            carrierForm: false,
+            space: 0
         };
+        this.service = new RouteService();
     };
 
     handleSelect = (latLng, departure, address) => {
         departure ? this.setState({ departure: { ...latLng, address } }) : this.setState({ arrival: { ...latLng, address } });
-    }
+    };
 
     resetClick = (departure) => {
         departure ? this.setState({ departure: {} }) : this.setState({ arrival: {} })
-    }
+    };
 
     forwardClick = () => {
         this.setState({ carrierForm: true })
-    }
+    };
 
     backwardClick = () => {
         this.setState({ carrierForm: false })
-    }
+    };
 
-    
-    handleDate(e) {
-        console.log(e)
-        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        // let day = e.slice(8,10);
-        // let month = months.indexOf(e.slice(4,7)) + 1;
-        // let year = e.slice(11,15);
-        // let time = e.slice(15,21);
-        // console.log(day,month,year,time)
+    handleDate = (date) => {
+        this.setState({ date: date._d })
+    };
+
+    handleSpace(space) {
+        if(typeof space === Number)
+            this.setState({ space })
+    };
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        const {arrival, departure, date, space} = this.state;
+        this.service.create(arrival, departure, date, space)
+        .then(e => console.log(e))
+
     }
 
     render() {
@@ -47,8 +56,8 @@ export class CreateRoute extends React.Component {
         // if( !_.isEqual(this.props.arrival, {}) && !_.isEqual(this.props.departure, {})) waypointsForm = <WaypointsForm></WaypointsForm>
         if (this.state.carrierForm) {
             return (
-                <div className="d-flex justify-content-center aling-items-center create-container">
-                    <div className="my-4 d-flex flex-row justify-content-between align-items-center row container border">
+                <div className="d-flex justify-content-center aling-items-center create-container" onSubmit={this.handleSubmit}>
+                    <form className="my-4 d-flex flex-row justify-content-between align-items-center row container border">
                         <div className="d-flex flex-column justify-content-center align-items-center border col-md-6 px-5 pb-5">
                             <div className="d-flex flex-column justify-content-start align-items-center container my-5">
                                 <span className="my-2 location-info">Departure date &amp; time</span>
@@ -57,7 +66,7 @@ export class CreateRoute extends React.Component {
                             <div className="d-flex flex-column justify-content-center align-items-center container-fluid my-5">
                                 <span className="my-2 location-info">Available space</span>
                                 <div className="d-flex flex-row justify-content-center align-items-center space-wrapper">
-                                    <input type="text" placeholder="meters" id="space" />
+                                    <input type="text" placeholder="meters" id="space" onChange={e => this.handleSpace(e.currentTarget.value)} />
                                     <input type="text" id="spacetwo" value="m²" disabled />
                                 </div>
                             </div>
@@ -71,7 +80,7 @@ export class CreateRoute extends React.Component {
                             </div>
                         </div>
                         <MapContainer {...this.state}></MapContainer>
-                    </div>
+                    </form>
                 </div>
             )
         } else {

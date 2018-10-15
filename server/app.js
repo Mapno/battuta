@@ -54,9 +54,10 @@ require('./passport')(app);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-// const homeRoute
-
 const authRouter = require('./routes/auth');
 app.use('/api/auth', authRouter);
+
+const routeRouter = require('./routes/routes');
+app.use('/api/route', routeRouter);
 
 module.exports = app;

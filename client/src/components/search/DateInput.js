@@ -14,11 +14,11 @@ export default class DateInput extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(date) {
+    handleChange = (date) => {
         this.setState({
             startDate: date
         });
-        this.props.handleDate(date._d);
+        this.props.handleDate(date);
     }
 
     render() {

@@ -8,7 +8,7 @@ const routeSchema = new Schema(
         departure: {},
         arrival: {},
         stops: [{ type: { type: String }, coordinates: [Number] }],
-        aviableSpace: Number
+        aviableSpace: Number,
     },
     {
         timestamps: {
