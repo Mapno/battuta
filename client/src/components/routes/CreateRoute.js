@@ -3,6 +3,7 @@ import LocationSearchInput from '../search/LocationSearchInput';
 import MapContainer from './MapContainer';
 import DateInput from '../search/DateInput';
 import RouteService from './RouteService';
+import { Redirect } from 'react-router-dom';
 
 export class CreateRoute extends React.Component {
     constructor() {
@@ -13,7 +14,8 @@ export class CreateRoute extends React.Component {
             date: {},
             // waypoints: []
             carrierForm: false,
-            space: 0
+            space: 0,
+            redirect: false
         };
         this.service = new RouteService();
     };
@@ -47,13 +49,14 @@ export class CreateRoute extends React.Component {
         event.preventDefault();
         const {arrival, departure, date, space} = this.state;
         this.service.create(arrival, departure, date, space)
-        .then(e => console.log(e))
-
-    }
+        .then(e => this.setState({redirect: true}))
+    };
 
     render() {
         // let waypointsForm;
         // if( !_.isEqual(this.props.arrival, {}) && !_.isEqual(this.props.departure, {})) waypointsForm = <WaypointsForm></WaypointsForm>
+        if(this.state.redirect)
+            return <Redirect to="/"></Redirect>
         if (this.state.carrierForm) {
             return (
                 <div className="d-flex justify-content-center aling-items-center create-container" onSubmit={this.handleSubmit}>

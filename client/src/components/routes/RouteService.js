@@ -10,8 +10,15 @@ class RouteService {
 
   create = (arrival, departure, date, space) => {
     return this.service.post("/create", { arrival, departure, date, space })
-    .then(res => res.data)
+      .then(res => res.data)
+      .catch(e => console.log(e))
   };
+
+  search = (arrival, departure, date) => {
+    return this.service.post('/search', { arrival, departure, date })
+      .then(res => res.data)
+      .catch(e => console.log(e))
+  }
 }
 
 export default RouteService;
