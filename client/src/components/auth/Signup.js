@@ -72,10 +72,9 @@ class Signup extends Component {
                             <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
                         </div>
                         <div className="d-flex flex-row my-3 justify-content-around">
-                            <label className="signup-label">Become a Carrier:</label>
-                            <div class="become-button">
-                                <input type="checkbox" value="None" id="become-button" name="check"  onChange={e => this.handleChange(e)}/>
-                                <label for="become-button"></label>
+                            <label >Become a Carrier:</label>
+                            <div className="become-button">
+                                <input type="checkbox" id="become-button" name="carrier"  onChange={e => this.handleChange(e)}/>
                             </div>
                         </div>
 

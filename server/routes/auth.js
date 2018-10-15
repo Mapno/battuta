@@ -44,7 +44,9 @@ router.post('/signup', (req, res, next) => {
     } else {
         User.findOne({ username })
             .then(foundUser => {
-                if (foundUser.username === username || foundUser.email === email) throw new Error('User already exists');
+                if (foundUser) {
+                    if (foundUser.username === username || foundUser.email === email) throw new Error('User already exists');
+                }
 
                 const salt = bcrypt.genSaltSync(10);
                 const hashPass = bcrypt.hashSync(password, salt);
@@ -67,15 +69,15 @@ router.post('/signup', (req, res, next) => {
                             registration,
                             owner: _id
                         }).save()
+                            .then((vehicle) => {
+                                return User.findByIdAndUpdate(vehicle.owner, { vehicle: vehicle._id, $push: { role: 'carrier' } })
+                            })
+                            .then(savedUser => login(req, savedUser))
+                            .then(user => res.json({ status: 'signup & login successfully', user }))
+                            .catch(e => next(e));
                     });
             })
-            .then((vehicle) => {
-                return User.findByIdAndUpdate(vehicle.owner, { vehicle: vehicle._id, $push: { role: 'carrier' } })
-            })
-            .then(savedUser => login(req, savedUser))
-            .then(user => res.json({ status: 'signup & login successfully', user }))
-            .catch(e => next(e));
-    }
+    };
 });
 
 
@@ -87,11 +89,18 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
+router.get('/currentuser', (req, res, next) => {
+    if (req.user) {
+        res.status(200).json(req.user);
+    } else {
+        next(new Error('Not logged in'))
+    }
+})
+
 router.get('/logout', (req, res) => {
     req.logout();
     res.status(200).json({ message: 'logged out' })
 });
-
 
 router.use((err, req, res) => {
     res.status(500).json({ message: err.message });

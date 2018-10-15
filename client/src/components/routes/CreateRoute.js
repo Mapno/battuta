@@ -9,7 +9,7 @@ export class CreateRoute extends React.Component {
         this.state = {
             arrival: {},
             departure: {},
-            // date: {},
+            date: '',
             // waypoints: []
             carrierForm: false
         };
@@ -31,6 +31,17 @@ export class CreateRoute extends React.Component {
         this.setState({ carrierForm: false })
     }
 
+    
+    handleDate(e) {
+        console.log(e)
+        const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+        // let day = e.slice(8,10);
+        // let month = months.indexOf(e.slice(4,7)) + 1;
+        // let year = e.slice(11,15);
+        // let time = e.slice(15,21);
+        // console.log(day,month,year,time)
+    }
+
     render() {
         // let waypointsForm;
         // if( !_.isEqual(this.props.arrival, {}) && !_.isEqual(this.props.departure, {})) waypointsForm = <WaypointsForm></WaypointsForm>
@@ -41,7 +52,7 @@ export class CreateRoute extends React.Component {
                         <div className="d-flex flex-column justify-content-center align-items-center border col-md-6 px-5 pb-5">
                             <div className="d-flex flex-column justify-content-start align-items-center container my-5">
                                 <span className="my-2 location-info">Departure date &amp; time</span>
-                                <DateInput></DateInput>
+                                <DateInput handleDate={this.handleDate}></DateInput>
                             </div>
                             <div className="d-flex flex-column justify-content-center align-items-center container-fluid my-5">
                                 <span className="my-2 location-info">Available space</span>
@@ -70,11 +81,11 @@ export class CreateRoute extends React.Component {
                         <div className="d-flex flex-column justify-content-center align-items-center border col-md-6 px-5 pb-5">
                             <div className="d-flex flex-column justify-content-center align-items-center container my-5" style={{ zIndex: 3 }}>
                                 <span className="my-2 location-info">Departure</span>
-                                <LocationSearchInput handleSelect={this.handleSelect} departure={true} resetClick={this.resetClick}></LocationSearchInput>
+                                <LocationSearchInput handleSelect={this.handleSelect} departure={true} resetClick={this.resetClick} place={this.state.departure}></LocationSearchInput>
                             </div>
                             <div className="d-flex flex-column justify-content-center align-items-center container" style={{ zIndex: 2 }}>
                                 <span className="my-2 location-info">Arrival</span>
-                                <LocationSearchInput handleSelect={this.handleSelect} departure={false} resetClick={this.resetClick}></LocationSearchInput>
+                                <LocationSearchInput handleSelect={this.handleSelect} departure={false} resetClick={this.resetClick} place={this.state.arrival}></LocationSearchInput>
                             </div>
                             {/* {waypointsForm} */}
                             <div className="container-fluid d-flex justify-content-end">

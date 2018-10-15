@@ -9,7 +9,7 @@ export default class DateInput extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            startDate: moment()
+            startDate: moment(),
         };
         this.handleChange = this.handleChange.bind(this);
     }
@@ -18,6 +18,7 @@ export default class DateInput extends React.Component {
         this.setState({
             startDate: date
         });
+        this.props.handleDate(date._d);
     }
 
     render() {

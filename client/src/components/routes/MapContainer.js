@@ -50,7 +50,6 @@ export default class MapContainer extends React.Component {
     }
 
     onMarker = () => {
-        // console.log(this.state.map);
         const { lat, lng } = this.props.departure;
         new window.google.maps.Marker({
             position: { lat, lng },

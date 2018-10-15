@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.scss';
-import { Route } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 import Navbar from './components/navbar/Navbar';
 import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
@@ -47,7 +47,7 @@ class App extends Component {
   }
 
   render() {
-    // this.fetchUser()
+    this.fetchUser()
 
     if (this.state.loggedInUser) {
       return (
@@ -55,7 +55,10 @@ class App extends Component {
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
-
+          <Route exact path='/' render={() => <HomePage></HomePage>}></Route>
+          <Route exact path='/login' render={() => <Redirect to="/" getUser={this.getTheUser} />} />
+          <Route exact path='/signup' render={() => <Redirect to="/" getUser={this.getTheUser} />} />
+          <Route exact path='/maps' render={() => <CreateRoute></CreateRoute>} />
           <Footer></Footer>
         </div>
       );
