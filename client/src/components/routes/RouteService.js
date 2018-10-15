@@ -11,13 +11,19 @@ class RouteService {
   create = (arrival, departure, date, space) => {
     return this.service.post("/create", { arrival, departure, date, space })
       .then(res => res.data)
-      .catch(e => console.log(e))
+      .catch(error => console.log(error));
   };
 
   search = (arrival, departure, date) => {
     return this.service.post('/search', { arrival, departure, date })
       .then(res => res.data)
-      .catch(e => console.log(e))
+      .catch(error => console.log(error));
+  }
+
+  show = id => {
+    return this.service.get('/my-routes', { id })
+      .then(res => res.data)
+      .catch(error => console.log(error));
   }
 }
 

@@ -9,7 +9,8 @@ const packageModel = new Schema(
         carrier: {type: Schema.Types.ObjectId, ref: 'User'},
         size: Number,
         weight: Number,
-        identifier: String
+        identifier: String,
+        route: {type: Schema.Types.ObjectId, ref: 'Route'}
     },
     {
         timestamps: {

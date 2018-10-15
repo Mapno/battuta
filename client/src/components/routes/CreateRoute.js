@@ -12,7 +12,6 @@ export class CreateRoute extends React.Component {
             arrival: {},
             departure: {},
             date: {},
-            // waypoints: []
             carrierForm: false,
             space: 0,
             redirect: false
@@ -53,8 +52,6 @@ export class CreateRoute extends React.Component {
     };
 
     render() {
-        // let waypointsForm;
-        // if( !_.isEqual(this.props.arrival, {}) && !_.isEqual(this.props.departure, {})) waypointsForm = <WaypointsForm></WaypointsForm>
         if(this.state.redirect)
             return <Redirect to="/"></Redirect>
         if (this.state.carrierForm) {
@@ -99,7 +96,6 @@ export class CreateRoute extends React.Component {
                                 <span className="my-2 location-info">Arrival</span>
                                 <LocationSearchInput handleSelect={this.handleSelect} departure={false} resetClick={this.resetClick} place={this.state.arrival}></LocationSearchInput>
                             </div>
-                            {/* {waypointsForm} */}
                             <div className="container-fluid d-flex justify-content-end">
                                 <div className="col-1 d-flex flex-column justify-content-between align-items-center mt-5">
                                     <button className="btn btn-dark" onClick={this.forwardClick}>Continue</button>

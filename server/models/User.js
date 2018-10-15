@@ -8,7 +8,8 @@ const userSchema = new Schema(
         password: String,
         email: { type: mongoose.SchemaTypes.Email },
         role: { type: [{type: String, enum: ["client", "carrier", "admin"]}], default: ['client'], },
-        vehicle: { type: Schema.Types.ObjectId, ref: "Vehicle" }
+        vehicle: { type: Schema.Types.ObjectId, ref: "Vehicle" },
+        friends: {type: [{type: Schema.Types.ObjectId, ref: 'User'}]}
     },
     {
         timestamps: {

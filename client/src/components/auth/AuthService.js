@@ -9,28 +9,33 @@ class AuthService {
   }
 
   signup = (username, password, email) => {
-    return this.service.post('/signup', {username, password, email})
-    .then(res => res.data)
+    return this.service.post('/signup', { username, password, email })
+      .then(res => res.data)
   }
 
   signupCarrier = (username, password, email, brand, model, color, registration, carrier) => {
-    return this.service.post('/signup', {username, password, email, brand, model, color, registration, carrier})
-    .then(res => res.data)
+    return this.service.post('/signup', { username, password, email, brand, model, color, registration, carrier })
+      .then(res => res.data)
   }
 
   login = (username, password) => {
-    return this.service.post('/login', {username, password})
-    .then(res => res.data)
+    return this.service.post('/login', { username, password })
+      .then(res => res.data)
   }
 
   loggedin = () => {
-    return this.service.get('/currentuser',)
-    .then(res => res.data)
+    return this.service.get('/currentuser')
+      .then(res => res.data)
   }
 
   logout = () => {
-    return this.service.get('/logout',)
-    .then(res => res.data)
+    return this.service.get('/logout')
+      .then(res => res.data)
+  }
+
+  getFriends = () => {
+    return this.service.get('/my-friends')
+      .then(res => res.data)
   }
 }
 

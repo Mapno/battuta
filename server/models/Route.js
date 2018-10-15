@@ -4,9 +4,21 @@ const Schema = mongoose.Schema;
 const routeSchema = new Schema(
     {
         departureTime: Date,
-        driver: {type: Schema.Types.ObjectId, ref: 'User'},
-        departure: {},
-        arrival: {},
+        driver: { type: Schema.Types.ObjectId, ref: 'User' },
+        departure: {
+            location: {
+                type: { type: String },
+                coordinates: [{ type: Number }]
+            },
+            name: String
+        },
+        arrival: {
+            location: {
+                type: { type: String },
+                coordinates: [{ type: Number }]
+            },
+            name: String
+        },
         stops: [{ type: { type: String }, coordinates: [Number] }],
         aviableSpace: Number,
     },
@@ -17,5 +29,8 @@ const routeSchema = new Schema(
         }
     }
 );
+
+routeSchema.index({ "departure.location": "2dsphere" })
+routeSchema.index({ "arrival.location": "2dsphere" })
 
 module.exports = mongoose.model('Route', routeSchema);

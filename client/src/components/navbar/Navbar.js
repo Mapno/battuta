@@ -35,7 +35,7 @@ class Navbar extends Component {
                         </button>
                         <div className="collapse navbar-collapse d-flex justify-content-between" id="navbarNav">
                             <ul className="navbar-nav">
-                                <li className="nav-item active"><Link to="/" className="nav-link">My routes</Link></li>
+                                <li className="nav-item active"><Link to="/my-routes" className="nav-link">My packages</Link></li>
                                 {createLink }
                             </ul>
                             <ul className="navbar-nav">
