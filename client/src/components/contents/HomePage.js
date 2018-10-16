@@ -40,7 +40,7 @@ class HomePage extends Component {
 
     render() {
         if (this.state.render)
-            return (<SearchedRoutes data={this.state.data}></SearchedRoutes>)
+            return (<SearchedRoutes data={this.state.data} user={this.props.user}></SearchedRoutes>)
         else
             return (
                 <div className="d-flex justify-content-center aling-items-center search-container">

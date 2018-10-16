@@ -54,4 +54,13 @@ router.get('/my-routes', (req, res, next) => {
         .catch(e => next(e));
 });
 
+router.get('/new-shipment', (req, res, next) => {
+    const { description, owner, receiver, carrier, size, weight, route } = req.body;
+    
+});
+
+router.use((err, req, res) => {
+    res.status(500).json({ message: err.message });
+});
+
 module.exports = router;

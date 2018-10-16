@@ -55,7 +55,7 @@ class App extends Component {
           <header className="App-header">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
-          <Route exact path='/' render={() => <HomePage></HomePage>}></Route>
+          <Route exact path='/' render={() => <HomePage user={this.state.loggedInUser}></HomePage>}></Route>
           <Route exact path='/login' render={() => <Redirect to="/" getUser={this.getTheUser} />} />
           <Route exact path='/signup' render={() => <Redirect to="/" getUser={this.getTheUser} />} />
           <Route exact path='/maps' render={() => <CreateRoute></CreateRoute>} />
