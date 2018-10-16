@@ -11,6 +11,7 @@ class UserSelect extends React.Component {
 
     handleChange = selectedUser => {
         this.setState({ selectedUser });
+        this.props.handleReceiverSelect(selectedUser)
     };
 
     render() {

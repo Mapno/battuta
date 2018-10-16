@@ -9,7 +9,8 @@ export default class MapContainer extends React.Component {
             map: {},
             directionsService: {},
             directionsDisplay: {},
-            center: {}
+            center: {},
+            // estimatedTime: ''
         };
     }
 
@@ -45,6 +46,7 @@ export default class MapContainer extends React.Component {
             travelMode: "DRIVING"
         };
         this.state.directionsService.route(request, (res, status) => {
+            // this.setState({ estimatedTime: res.routes[0].legs[0].duration.text })
             if (status === "OK") this.state.directionsDisplay.setDirections(res);
         });
     }

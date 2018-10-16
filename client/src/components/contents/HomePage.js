@@ -11,7 +11,7 @@ class HomePage extends Component {
             departure: {},
             arrival: {},
             date: {},
-            render: false,
+            render: true,
             data: {}
         }
         this.service = new RouteService()
