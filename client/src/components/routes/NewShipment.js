@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthService from '../auth/AuthService';
 import UserSelect from '../search/UserSelect';
+import RouteService from '../routes/RouteService';
 
 class NewShipment extends React.Component {
     constructor() {
@@ -12,11 +13,12 @@ class NewShipment extends React.Component {
             weight: 0,
             receiver: {}
         };
-        this.service = new AuthService();
+        this.authService = new AuthService();
+        this.routeService = new RouteService();
     };
 
     findUsers = (inputValue) => {
-        this.service.find(inputValue)
+        this.authService.find(inputValue)
             .then(users => {
                 if(inputValue.length === 0)
                     return []
@@ -41,14 +43,24 @@ class NewShipment extends React.Component {
         this.setState({ receiver: user })
     }
 
+    handleSubmit = event => {
+        event.preventDefault();
+        const { description, size, weight, receiver } = this.state;
+        const { selectedRoute, user } = this.props;
+
+        this.routeService.shipping(description, user, receiver, size, weight, selectedRoute)
+            .then(data => console.log(data))
+
+    }
+
     render() {
         const { usersArray } = this.state;
         return (
             <div>
-                <form>
+                <form onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor="description">Description</label>
-                        <input type="text" name="description" onChange={e => this.handleChange(e)}></input>
+                        <input type="text" name="description" size="100" onChange={e => this.handleChange(e)}></input>
                     </div>
                     <div>
                         <label htmlFor="size">Size</label>

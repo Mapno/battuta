@@ -26,8 +26,8 @@ class RouteService {
       .catch(error => console.log(error));
   }
 
-  shipping = (description, owner, receiver, carrier, size, weight, route) => {
-    return this.service.post('/new-shipment', { description, owner, receiver, carrier, size, weight, route })
+  shipping = (description, owner, receiver, size, weight, route) => {
+    return this.service.post('/new-shipment', { description, owner, receiver, size, weight, route })
       .then(res => res.data)
       .catch(error => console.log(error))
   }
