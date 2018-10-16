@@ -32,6 +32,11 @@ class AuthService {
     return this.service.get('/logout')
       .then(res => res.data)
   };
+
+  find = (user) => {
+    return this.service.post('/find', { username: user })
+      .then(res => res.data)
+  }
 };
 
 export default AuthService;

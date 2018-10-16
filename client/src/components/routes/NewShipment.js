@@ -1,17 +1,35 @@
 import React from 'react';
+import AuthService from '../auth/AuthService';
+import UserSelect from '../search/UserSelect';
 
 class NewShipment extends React.Component {
     constructor() {
         super();
         this.state = {
-
+            usersArray: []
         };
-        // this.service = new 
+        this.service = new AuthService();
+    };
+
+    findUsers = (inputValue) => {
+        this.service.find(inputValue)
+            .then(users => {
+                return users.map(user => {
+                    Object.defineProperty(user, 'value', Object.getOwnPropertyDescriptor(user, '_id'));
+                    delete user['_id'];
+                    Object.defineProperty(user, 'label', Object.getOwnPropertyDescriptor(user, 'username'));
+                    delete user['username'];
+                    return user;
+                });
+            })
+            .then(users => this.setState({ usersArray: users }))
     };
 
 
     render() {
-        return(
+        const { usersArray } = this.state;
+        console.log(usersArray)
+        return (
             <div>
                 <form>
                     <div>
@@ -28,7 +46,8 @@ class NewShipment extends React.Component {
                     </div>
                     <div>
                         <label htmlFor="receiver">Receiver</label>
-                        <input type="text" name="Receviver"></input>
+                        <input type="text" name="Receviver" onChange={(event) => this.findUsers(event.currentTarget.value)}></input>
+                        <UserSelect users={usersArray} findUsers={this.findUsers}></UserSelect>
                     </div>
                 </form>
             </div>

@@ -2,11 +2,6 @@ import React from "react";
 
 class RouteCard extends React.Component {
 
-    constructor(props) {
-        super(props)
-        console.log(props.handleBook.toString())
-    }
-
     render() {
         const route = this.props
         const { arrival, departure, aviableSpace, driver, date } = this.props.route;
