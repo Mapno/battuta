@@ -59,7 +59,7 @@ class NewShipment extends React.Component {
     render() {
         const { usersArray } = this.state;
         if (this.state.redirect)
-            return <Redirect to="/my-routes"></Redirect>
+            return <Redirect to="/my-packages"></Redirect>
         else
             return (
                 <div>

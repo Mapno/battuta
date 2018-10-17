@@ -1,14 +1,25 @@
 import React from 'react';
-import { Table } from 'react-materialize';
+import { Table, Button } from 'react-materialize';
+import RouteService from '../routes/RouteService';
 
 class PackageCard extends React.Component {
+    constructor() {
+        super();
+        this.service = new RouteService();
+    }
+
+    handleAccept(value) {
+        this.service.accept(value)
+            .then(() => this.props.findPackages())
+    }
+
     render() {
         const { packages } = this.props
         return (
             <div>
                 {Object.keys(packages).map(key => {
-                    return <div key={key}>
-                        <h3>{key === 'asOwner' ? 'Sent Packages' : key === 'asCarrier' ? 'Shipments' : 'Received Packages' }</h3>
+                    return packages[key].length > 0 ? <div key={key}>
+                        <h3>{key === 'asOwner' ? 'Sent Packages' : key === 'asShipper' ? 'Shipments' : 'Received Packages'}</h3>
                         <Table>
                             <thead>
                                 <tr>
@@ -35,11 +46,20 @@ class PackageCard extends React.Component {
                                         <td>{shipment.receiver.username}</td>
                                         <td>{shipment.carrier.username}</td>
                                         <td>{shipment.status}</td>
+                                        {key === 'asShipper' && shipment.status === 'Pending' ?
+                                            <td data-field>
+                                                <Button
+                                                    className="blue"
+                                                    waves="green"
+                                                    onClick={(event) => this.handleAccept(event.currentTarget.value)}
+                                                    value={shipment._id}>Accept shimpent</Button>
+                                            </td> :
+                                            <td></td>}
                                     </tr>
                                 </tbody>
                             })}
                         </Table>
-                    </div>
+                    </div> : <div key={key}></div>;
                 })}
             </div>
         )

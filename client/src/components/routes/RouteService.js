@@ -32,8 +32,14 @@ class RouteService {
       .catch(error => console.log(error));
   }
 
-  find = (user) => {
+  find = user => {
     return this.service.post('/find', { user })
+      .then(res => res.data)
+      .catch(error => console.log(error));
+  }
+
+  accept = id => {
+    return this.service.put('/accept', { id })
       .then(res => res.data)
       .catch(error => console.log(error));
   }

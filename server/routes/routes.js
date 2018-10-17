@@ -84,22 +84,22 @@ router.post("/new-shipment", (req, res, next) => {
 router.post("/find", (req, res, next) => {
   const { _id, role } = req.body.user;
 
-  let asOwner, asReceiver, asShipper;
+  let asOwner = [], asReceiver = [], asShipper = [];
 
   Package.find({ owner: _id })
     .populate("owner")
     .populate("receiver")
     .populate("carrier")
     .populate('route')
-    .then(packages => (asOwner = packages))
+    .then(ownerShipments => asOwner = ownerShipments)
     .then(() => {
-      Package.find({ receiver: _id })
-        .populate("owner")
-        .populate("receiver")
-        .populate("carrier")
-        .populate('route')
+      return Package.find({ receiver: _id })
+      .populate("owner")
+      .populate("receiver")
+      .populate("carrier")
+      .populate('route')
     })
-    .then(packages => (asReceiver = packages))
+    .then(receiverShipments => asReceiver = receiverShipments)
     .then(() => {
       if (role.includes("carrier")) {
         return Package.find({ carrier: _id })
@@ -107,12 +107,21 @@ router.post("/find", (req, res, next) => {
           .populate("receiver")
           .populate("carrier")
           .populate('route')
+      } else {
+        return [];
       }
     })
-    .then(packages => (asShipper = packages))
+    .then(shipperShipments => (asShipper = shipperShipments))
     .then(() => res.status(200).json({ asOwner, asReceiver, asShipper }))
     .catch(error => next(error));
 });
+
+router.put('/accept', (req,res,next) => {
+  const{ id } = req.body
+  Package.findByIdAndUpdate({ _id: id }, { status: 'Accepted' })
+    .then(package => res.status(200).json(package))
+    .catch(error => next(error));
+})
 
 router.use((err, req, res) => {
   res.status(500).json({ message: err.message });

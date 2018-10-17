@@ -7,23 +7,31 @@ class MyPackages extends React.Component {
         super(props);
         this.state = {
             user: props.user,
-            packages: []
+            packages: {
+                asOwner: [],
+                asReceiver: [],
+                asShipper: []
+            }
         }
         this.service = new RouteService();
     }
 
-    componentDidMount() {
+    findPackages = () => {
         const { user } = this.state
         this.service.find(user)
             .then(packages => this.setState({ packages }))
     }
 
+    componentDidMount() {
+        this.findPackages()
+    }
+
     render() {
-        const { packages } = this.state
-        if (Object.keys(packages).length > 0)
+        const { packages } = this.state;
+        if (packages['asOwner'].length > 0 || packages['asShipper'].length > 0 || packages['asReceiver'].length > 0)
             return (
                 <div>
-                    <PackageCard packages={packages}></PackageCard>
+                    <PackageCard packages={packages} findPackages={this.findPackages}></PackageCard>
                 </div>
             )
         else
