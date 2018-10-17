@@ -8,6 +8,7 @@ import AuthService from './components/auth/AuthService';
 import HomePage from './components/contents/HomePage';
 import Footer from './components/footer/Footer';
 import { CreateRoute } from './components/routes/CreateRoute';
+import MyPackages from './components/profile/MyPackages';
 
 class App extends Component {
 
@@ -51,14 +52,15 @@ class App extends Component {
 
     if (this.state.loggedInUser) {
       return (
-        <div className="App">
-          <header className="App-header">
+        <div className="">
+          <header className="">
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
           <Route exact path='/' render={() => <HomePage user={this.state.loggedInUser}></HomePage>}></Route>
           <Route exact path='/login' render={() => <Redirect to="/" getUser={this.getTheUser} />} />
           <Route exact path='/signup' render={() => <Redirect to="/" getUser={this.getTheUser} />} />
           <Route exact path='/maps' render={() => <CreateRoute></CreateRoute>} />
+          <Route exact path="/my-packages" render={() => <MyPackages user={this.state.loggedInUser}></MyPackages>} />
           <Footer></Footer>
         </div>
       );

@@ -80,6 +80,31 @@ router.post("/new-shipment", (req, res, next) => {
     .catch(e => next(e));
 });
 
+router.post('/find', (req, res, next) => {
+  const { _id, role } = req.body.user;
+
+  let asOwner, asReceiver, asShipper;
+
+  Package.find({ owner: _id })
+    .populate("owner")
+    .populate("receiver")
+    .populate("carrier")
+    .then(packages => asOwner = packages)
+    .then(() => {
+      Package.find({ receiver: _id })
+        .populate("owner")
+        .populate("receiver")
+        .populate("carrier")
+    })
+    .then(packages => asReceiver = packages)
+    .then(() => role.includes('carrier') ? Package.find({ carrier: _id }) : null)
+    .then(packages => asShipper = packages)
+    .then(() => res.status(200).json(asOwner, asReceiver, asShipper))
+    .catch(error => next(error))
+
+
+})
+
 router.use((err, req, res) => {
   res.status(500).json({ message: err.message });
 });

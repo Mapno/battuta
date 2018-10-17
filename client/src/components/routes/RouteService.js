@@ -29,7 +29,13 @@ class RouteService {
   shipping = (description, owner, receiver, size, weight, route) => {
     return this.service.post('/new-shipment', { description, owner, receiver, size, weight, route })
       .then(res => res.data)
-      .catch(error => console.log(error))
+      .catch(error => console.log(error));
+  }
+
+  find = (user) => {
+    return this.service.post('/find', { user })
+      .then(res => res.data)
+      .catch(error => console.log(error));
   }
 }
 
