@@ -1,5 +1,6 @@
 import React from 'react';
 import RouteService from '../routes/RouteService';
+import PackageCard from './PackageCard';
 
 class MyPackages extends React.Component {
     constructor(props) {
@@ -19,11 +20,10 @@ class MyPackages extends React.Component {
 
     render() {
         const { packages } = this.state
-        console.log(packages)
-        if (packages.length > 0)
+        if (Object.keys(packages).length > 0)
             return (
                 <div>
-                    {packages.map(shipment => <p>{shipment._id}</p>)}
+                    <PackageCard packages={packages}></PackageCard>
                 </div>
             )
         else

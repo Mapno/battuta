@@ -102,12 +102,12 @@ router.get('/logout', (req, res) => {
     res.status(200).json({ message: 'logged out' })
 });
 
-router.post('/find', (req, res) => {
+router.post('/find', (req, res, next) => {
     const { username } = req.body;
+    const { user } = req;
     if (username.length === 0) res.status(200).json({})
-    if (username.length >= 4) {
-        const regexp = new RegExp(username, 'i')
-        User.find({ username: regexp }, { username: 1 }, { limit: 10 })
+    if (username.length >= 3) {
+        User.find({ username: { $ne: user.username, $regex: new RegExp(username, 'i')}}, { username: 1 }, { limit: 10 })
             .then(users => res.status(200).json(users))
             .catch(error => next(error))
     }

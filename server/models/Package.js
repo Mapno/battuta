@@ -10,7 +10,8 @@ const packageModel = new Schema(
         size: Number,
         weight: Number,
         identifier: String,
-        route: {type: Schema.Types.ObjectId, ref: 'Route'}
+        route: {type: Schema.Types.ObjectId, ref: 'Route'},
+        status: {type: String, default: 'Pending'}
     },
     {
         timestamps: {
