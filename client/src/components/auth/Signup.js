@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import AuthService from './AuthService';
 import CarrierForm from './CarrierForm';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
 
 class Signup extends Component {
     constructor(props) {
@@ -54,36 +60,45 @@ class Signup extends Component {
         let carrierForm;
         if (this.state.carrier) carrierForm = <CarrierForm handleChange={this.handleChange} brand={this.state.brand} model={this.state.model} color={this.state.color} registration={this.state.registration}></CarrierForm>
         return (
-            <div className="d-flex flex-column align-items-center justify-content-between my-3">
-                <h3>Welcome!, create your account next:</h3>
+            <Grid
+                container
+                alignItems="center"
+                justify="center"
+                direction="row"
+            >
 
-                <form onSubmit={this.handleFormSubmit} className="container row d-flex flex-column align-items-center">
-                    <fieldset className="d-flex flex-column col-4">
-                        <div className="d-flex flex-row my-3 justify-content-around">
-                            <label className="signup-label">Username:</label>
-                            <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-                        </div>
-                        <div className="d-flex flex-row my-3 justify-content-around">
-                            <label className="signup-label">Password:</label>
-                            <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-                        </div>
-                        <div className="d-flex flex-row my-3 justify-content-around">
-                            <label className="signup-label">Email:</label>
-                            <input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
-                        </div>
-                        <div className="d-flex flex-row my-3 justify-content-around">
-                            <label >Become a Carrier:</label>
-                            <div className="become-button">
-                                <input type="checkbox" id="become-button" name="carrier"  onChange={e => this.handleChange(e)}/>
-                            </div>
-                        </div>
 
-                        {carrierForm}
-                    </fieldset>
-                    <input type="submit" value="Sign up" className="btn btn-dark col-2" />
-                </form>
+                <Grid
+                    container
+                    alignItems="center"
+                    justify="center"
+                    direction="column"
+                >
+                    <h3 style={{ marginBottom: "3vh", marginTop: "3vh" }}>Welcome!, create your account next:</h3>
+                    <FormControl style={{ marginBottom: "2vh" }}>
+                        <InputLabel>Username:</InputLabel>
+                        <Input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
+                    </FormControl>
+                    <FormControl style={{ marginBottom: "2vh" }}>
+                        <InputLabel>Password:</InputLabel>
+                        <Input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
+                    </FormControl>
+                    <FormControl style={{ marginBottom: "2vh" }}>
+                        <InputLabel>Email:</InputLabel>
+                        <Input type="email" name="email" value={this.state.email} onChange={e => this.handleChange(e)} />
+                    </FormControl>
+                    <FormControl style={{ marginBottom: "2vh" }}>
+                        <span >Become a Carrier:</span>
+                        <Checkbox color="primary" id="become-button" name="carrier" onChange={e => this.handleChange(e)} value/>
+                    </FormControl>
 
-            </div>
+                </Grid>
+                {carrierForm}
+
+
+                <Button variant="contained" color="primary" value="Sign up" onClick={this.handleFormSubmit} >Sign up</Button>
+
+            </Grid>
         )
     }
 }

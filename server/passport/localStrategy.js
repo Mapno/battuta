@@ -11,6 +11,7 @@ passport.use(
     },
     (username, password, done) => {
       User.findOne({ username })
+        .populate('vehicle')
         .then(foundUser => {
           if (!foundUser) {
             done(null, false, { message: "Incorrect username" });
@@ -21,7 +22,6 @@ passport.use(
             done(null, false, { message: "Incorrect password" });
             return;
           }
-
           done(null, foundUser);
         })
         .catch(err => done(err));

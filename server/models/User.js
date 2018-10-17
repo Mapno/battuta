@@ -7,7 +7,7 @@ const userSchema = new Schema(
         username: {type: String, unique: true},
         password: String,
         email: { type: mongoose.SchemaTypes.Email },
-        role: { type: [{type: String, enum: ["client", "carrier", "admin"]}], default: ['client'], },
+        role: { type: [{type: String, enum: ["client", "shipper", "admin"]}], default: ['client'], },
         vehicle: { type: Schema.Types.ObjectId, ref: "Vehicle" }
     },
     {

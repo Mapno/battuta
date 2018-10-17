@@ -66,11 +66,11 @@ router.post('/signup', (req, res, next) => {
                             brand,
                             model,
                             color,
-                            registration,
+                            registrationNumber: registration,
                             owner: _id
                         }).save()
                             .then((vehicle) => {
-                                return User.findByIdAndUpdate(vehicle.owner, { vehicle: vehicle._id, $push: { role: 'carrier' } })
+                                return User.findByIdAndUpdate(vehicle.owner, { vehicle: vehicle._id, $push: { role: 'carrier' } }, { "new": true})
                             })
                             .then(savedUser => login(req, savedUser))
                             .then(user => res.json({ status: 'signup & login successfully', user }))
@@ -83,7 +83,7 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', (err, user, failureDetails) => {
-        if (err) next(new Error('Something went wrong'));
+        if (err) next(new Error(err));
         if (!user) next(failureDetails)
         login(req, user).then(() => res.status(200).json(req.user));
     })(req, res, next);

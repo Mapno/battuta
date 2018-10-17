@@ -4,6 +4,11 @@ import MapContainer from './MapContainer';
 import DateInput from '../search/DateInput';
 import RouteService from './RouteService';
 import { Redirect } from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import InputLabel from '@material-ui/core/InputLabel';
+import Card from '@material-ui/core/Card';
+
 
 export class CreateRoute extends React.Component {
     constructor() {
@@ -40,71 +45,74 @@ export class CreateRoute extends React.Component {
     };
 
     handleSpace(space) {
-        if(typeof space === Number)
+        if (typeof space === Number)
             this.setState({ space })
     };
 
     handleSubmit = (event) => {
         event.preventDefault();
-        const {arrival, departure, date, space} = this.state;
+        const { arrival, departure, date, space } = this.state;
         this.service.create(arrival, departure, date, space)
-        .then(e => this.setState({redirect: true}))
+            .then(e => this.setState({ redirect: true }))
     };
 
     render() {
-        if(this.state.redirect)
+        if (this.state.redirect)
             return <Redirect to="/"></Redirect>
         if (this.state.carrierForm) {
             return (
-                <div className="d-flex justify-content-center aling-items-center create-container" onSubmit={this.handleSubmit}>
-                    <form className="my-4 d-flex flex-row justify-content-between align-items-center row container border">
-                        <div className="d-flex flex-column justify-content-center align-items-center border col-md-6 px-5 pb-5">
-                            <div className="d-flex flex-column justify-content-start align-items-center container my-5">
-                                <span className="my-2 location-info">Departure date &amp; time</span>
-                                <DateInput handleDate={this.handleDate}></DateInput>
-                            </div>
-                            <div className="d-flex flex-column justify-content-center align-items-center container-fluid my-5">
-                                <span className="my-2 location-info">Available space</span>
-                                <div className="d-flex flex-row justify-content-center align-items-center space-wrapper">
-                                    <input type="text" placeholder="meters" id="space" onChange={e => this.handleSpace(e.currentTarget.value)} />
-                                    <input type="text" id="spacetwo" value="m²" disabled />
-                                </div>
-                            </div>
-                            <div className="d-flex flex-row justify-content-between">
-                                <div className="col-1 d-flex flex-column justify-content-between align-items-center mt-5">
-                                    <button className="btn btn-light" onClick={this.backwardClick}>Back</button>
-                                </div>
-                                <div className="col-1 d-flex flex-column justify-content-between align-items-center mt-5">
-                                    <button className="btn btn-dark" type="submit">Submit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <MapContainer {...this.state}></MapContainer>
-                    </form>
-                </div>
+                <Grid style={{ marginTop: "2vh", marginLeft: "18vw", marginRight: "18vw" }}>
+                    <Card>
+                        <Grid container spacing={16} direction="row" alignItems="stretch" justify="space-around" style={{ marginTop: "2vh", marginBottom: "2vh" }}>
+                            <Grid item lg={5} container alignItems="center" justify="space-around" direction="column">
+                                <Grid style={{ width: "80%" }}>
+                                    <InputLabel className="my-2 location-info" style={{ width: "100%" }}>Departure date &amp; time</InputLabel>
+                                    <DateInput handleDate={this.handleDate} ></DateInput>
+                                </Grid>
+                                <Grid style={{ width: "80%" }}>
+                                    <InputLabel className="my-2 location-info">Available space</InputLabel>
+                                    <Grid className="d-flex flex-row justify-content-center align-items-center space-wrapper" style={{ width: "100%" }}>
+                                        <input type="text" placeholder="meters" id="space" onChange={e => this.handleSpace(e.currentTarget.value)} />
+                                        <input type="text" id="spacetwo" value="m²" disabled />
+                                    </Grid>
+                                </Grid>
+                                <Grid container alignItems="center" justify="space-around" >
+                                    <Button variant="contained" onClick={this.backwardClick}>Back</Button>
+                                    <Button variant="contained" color="primary" onClick={this.handleSubmit}>Submit</Button>
+                                </Grid>
+                            </Grid>
+                            <Grid item lg={7}>
+                                <MapContainer {...this.state}></MapContainer>
+                            </Grid>
+                        </Grid>
+                    </Card>
+
+                </Grid>
             )
         } else {
             return (
-                <div className="d-flex justify-content-center aling-items-center create-container">
-                    <div className="my-4 d-flex flex-row justify-content-between align-items-center row container border">
-                        <div className="d-flex flex-column justify-content-center align-items-center border col-md-6 px-5 pb-5">
-                            <div className="d-flex flex-column justify-content-center align-items-center container my-5" style={{ zIndex: 3 }}>
-                                <span className="my-2 location-info">Departure</span>
-                                <LocationSearchInput handleSelect={this.handleSelect} departure={true} resetClick={this.resetClick} place={this.state.departure}></LocationSearchInput>
-                            </div>
-                            <div className="d-flex flex-column justify-content-center align-items-center container" style={{ zIndex: 2 }}>
-                                <span className="my-2 location-info">Arrival</span>
-                                <LocationSearchInput handleSelect={this.handleSelect} departure={false} resetClick={this.resetClick} place={this.state.arrival}></LocationSearchInput>
-                            </div>
-                            <div className="container-fluid d-flex justify-content-end">
-                                <div className="col-1 d-flex flex-column justify-content-between align-items-center mt-5">
-                                    <button className="btn btn-dark" onClick={this.forwardClick}>Continue</button>
-                                </div>
-                            </div>
-                        </div>
-                        <MapContainer {...this.state}></MapContainer>
-                    </div>
-                </div>
+                <Grid style={{ marginTop: "2vh", marginLeft: "18vw", marginRight: "18vw" }}>
+                    <Card>
+                        <Grid container spacing={16} direction="row" alignItems="stretch" justify="space-around" style={{ marginTop: "2vh", marginBottom: "2vh" }}>
+                            <Grid item lg={5} container alignItems="center" justify="space-around" direction="column">
+                                <Grid style={{ zIndex: 3, width: "80%" }}>
+                                    <InputLabel style={{ marginBottom: "2vh" }} className="my-2 location-info">Departure</InputLabel>
+                                    <LocationSearchInput style={{ marginBottom: "2vh" }} handleSelect={this.handleSelect} departure={true} resetClick={this.resetClick} place={this.state.departure}></LocationSearchInput>
+                                </Grid>
+                                <Grid style={{ zIndex: 2, width: "80%" }}>
+                                    <InputLabel style={{ marginBottom: "2vh" }} className="my-2 location-info">Arrival</InputLabel>
+                                    <LocationSearchInput style={{ marginBottom: "2vh" }} handleSelect={this.handleSelect} departure={false} resetClick={this.resetClick} place={this.state.arrival}></LocationSearchInput>
+                                </Grid>
+                                <Grid container justify="flex-end" style={{paddingRight: "3vw"}}>
+                                    <Button style={{ marginBottom: "2vh" }} variant="contained" onClick={this.forwardClick}>Continue</Button>
+                                </Grid>
+                            </Grid>
+                            <Grid item lg={7}>
+                                <MapContainer {...this.state}></MapContainer>
+                            </Grid>
+                        </Grid>
+                    </Card>
+                </Grid>
             );
         }
     };

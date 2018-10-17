@@ -1,6 +1,7 @@
 import React from 'react';
 import RouteService from '../routes/RouteService';
 import PackageCard from './PackageCard';
+import Grid from '@material-ui/core/Grid';
 
 class MyPackages extends React.Component {
     constructor(props) {
@@ -30,9 +31,13 @@ class MyPackages extends React.Component {
         const { packages } = this.state;
         if (packages['asOwner'].length > 0 || packages['asShipper'].length > 0 || packages['asReceiver'].length > 0)
             return (
-                <div>
+                <Grid
+                container
+                alignItems="center"
+                justify="center"
+                >
                     <PackageCard packages={packages} findPackages={this.findPackages}></PackageCard>
-                </div>
+                </Grid>
             )
         else
             return (

@@ -9,6 +9,7 @@ import HomePage from './components/contents/HomePage';
 import Footer from './components/footer/Footer';
 import { CreateRoute } from './components/routes/CreateRoute';
 import MyPackages from './components/profile/MyPackages';
+import MyProfile from './components/profile/MyProfile';
 
 class App extends Component {
 
@@ -61,6 +62,7 @@ class App extends Component {
           <Route exact path='/signup' render={() => <Redirect to="/" getUser={this.getTheUser} />} />
           <Route exact path='/maps' render={() => <CreateRoute></CreateRoute>} />
           <Route exact path="/my-packages" render={() => <MyPackages user={this.state.loggedInUser}></MyPackages>} />
+          <Route exact path="/profile" render={() => <MyProfile user={this.state.loggedInUser}></MyProfile>} />
           <Footer></Footer>
         </div>
       );

@@ -30,7 +30,7 @@ export default class DateInput extends React.Component {
             showTimeSelect
             timeFormat="HH:mm"
             timeIntervals={15}
-            dateFormat="DD/MM/YYYY     -     LT"
+            dateFormat="         DD/MM/YYYY               -             LT"
             timeCaption="Time"
         />;
     }

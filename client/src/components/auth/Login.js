@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import AuthService from './AuthService'
+import AuthService from './AuthService';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+
 
 class Login extends Component {
   constructor(props) {
@@ -39,25 +45,30 @@ class Login extends Component {
 
   render() {
 
-    return (<div>
-      <h3>Please, login to our site</h3>
+    return (
+      <Grid
+      container
+      alignItems="center"
+      justify="center"
+      direction="column"
+      >
+        <h3 style={{ marginBottom: "3vh", marginTop: "3vh" }}>Wellcome back!</h3>
 
-      <form onSubmit={this.handleFormSubmit}>
-        <fieldset>
-          <label>Username:</label>
-          <input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} />
-        </fieldset>
+        <FormControl style={{ marginBottom: "2vh" }}>
+          <InputLabel>Username:</InputLabel>
+          <Input type="text" name="username" value={this.state.username} onChange={e => this.handleChange(e)} required/>
+        </FormControl>
 
-        <fieldset>
-          <label>Password:</label>
-          <input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} />
-        </fieldset>
+        <FormControl style={{ marginBottom: "2vh" }}>
+          <InputLabel>Password:</InputLabel>
+          <Input type="password" name="password" value={this.state.password} onChange={e => this.handleChange(e)} required/>
+        </FormControl>
 
-        <input type="submit" value="Login" />
-      </form>
+        <Button type="submit" value="Login" onClick={this.handleFormSubmit} variant="contained" color="primary">Log in</Button>
 
-      <h1>{this.state.error ? 'Error' : ''}</h1>
-    </div>)
+        <h1>{this.state.error ? 'Error' : ''}</h1>
+      </Grid>
+    )
   }
 }
 
