@@ -79,12 +79,12 @@ export class CreateRoute extends React.Component {
                                 </Grid>
                                 <Grid style={{ width: "80%" }}>
                                     <InputLabel className="my-2 create-label" style={{ width: "100%" }}>Price/m²</InputLabel>
-                                    <Input onChange={e => this.handlePrice(e.currentTarget.value)} ></Input>
+                                    <input className="search-input" onChange={e => this.handlePrice(e.currentTarget.value)} placeholder="Set a price" ></input>
                                 </Grid>
                                 <Grid style={{ width: "80%" }}>
                                     <InputLabel className="my-2 create-label">Available space</InputLabel>
                                     <Grid className="d-flex flex-row justify-content-center align-items-center space-wrapper" style={{ width: "100%" }}>
-                                        <input type="text" placeholder="meters" id="space" onChange={e => this.handleSpace(e.currentTarget.value)} />
+                                        <input type="text" placeholder="Available space in meters" id="space" onChange={e => this.handleSpace(e.currentTarget.value)} />
                                         <input type="text" id="spacetwo" value="m²" disabled />
                                     </Grid>
                                 </Grid>

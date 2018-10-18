@@ -69,23 +69,25 @@ class NewShipment extends React.Component {
         else
             return (
                 <Grid container align="center" justify="center" direction="column" className="search-page">
-                    <FormControl style={{ marginTop: "2vh"}}>
-                        <InputLabel htmlFor="description">Description</InputLabel>
-                        <Input type="text" name="description" size="100" onChange={e => this.handleChange(e)}></Input>
-                    </FormControl>
-                    <FormControl style={{ marginTop: "2vh"}}>
-                        <InputLabel htmlFor="size">Size</InputLabel>
-                        <Input type="number" name="size" onChange={e => this.handleChange(e)}></Input>
-                    </FormControl>
-                    <FormControl style={{ marginTop: "2vh"}}>
-                        <InputLabel htmlFor="weight">Weight</InputLabel>
-                        <Input type="number" name="weight" onChange={e => this.handleChange(e)}></Input>
-                    </FormControl>
-                    <FormControl style={{ marginTop: "2vh", width: "28vw"}}>
-                        <InputLabel htmlFor="receiver">Receiver</InputLabel>
-                        <UserSelect users={usersArray} findUsers={this.findUsers} name="receviver" handleReceiverSelect={this.handleReceiverSelect} />
-                    </FormControl>
-                    <Button color="primary" variant="contained" onClick={this.handleSubmit}>Book shipment</Button>
+                    <Paper>
+                        <FormControl style={{ marginTop: "2vh" }}>
+                            <InputLabel htmlFor="description">Description</InputLabel>
+                            <Input type="text" name="description" size="100" onChange={e => this.handleChange(e)}></Input>
+                        </FormControl>
+                        <FormControl style={{ marginTop: "2vh" }}>
+                            <InputLabel htmlFor="size">Size</InputLabel>
+                            <Input type="number" name="size" onChange={e => this.handleChange(e)}></Input>
+                        </FormControl>
+                        <FormControl style={{ marginTop: "2vh" }}>
+                            <InputLabel htmlFor="weight">Weight</InputLabel>
+                            <Input type="number" name="weight" onChange={e => this.handleChange(e)}></Input>
+                        </FormControl>
+                        <FormControl style={{ marginTop: "2vh", width: "28vw" }}>
+                            <InputLabel htmlFor="receiver">Receiver</InputLabel>
+                            <UserSelect users={usersArray} findUsers={this.findUsers} name="receviver" handleReceiverSelect={this.handleReceiverSelect} />
+                        </FormControl>
+                        <Button color="primary" variant="contained" onClick={this.handleSubmit}>Book shipment</Button>
+                    </Paper>
                 </Grid>
             )
     }

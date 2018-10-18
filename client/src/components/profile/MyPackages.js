@@ -2,6 +2,8 @@ import React from 'react';
 import RouteService from '../routes/RouteService';
 import PackageCard from './PackageCard';
 import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
 
 class MyPackages extends React.Component {
     constructor(props) {
@@ -34,16 +36,18 @@ class MyPackages extends React.Component {
         if (packages['asOwner'].length > 0 || packages['asShipper'].length > 0 || packages['asReceiver'].length > 0)
             return (
                 <Grid
-                container
-                alignItems="center"
-                justify="center"
+                    container
+                    alignItems="center"
+                    justify="center"
                 >
                     <PackageCard packages={packages} findPackages={this.findPackages} refresh={refresh}></PackageCard>
                 </Grid>
             )
         else
             return (
-                <div>no pakcages bro</div>
+                <Grid container justify="center" className="my-5">
+                    <h5>You have no shipments so far.<br />Search for a route to start enjoying Battuta!</h5>
+                </Grid>
             )
     }
 }

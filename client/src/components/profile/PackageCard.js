@@ -9,8 +9,6 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import StatusCard from './StatusCard';
 
-
-
 class PackageCard extends React.Component {
     constructor() {
         super();
