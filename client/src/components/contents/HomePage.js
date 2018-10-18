@@ -44,7 +44,7 @@ class HomePage extends Component {
             return (<SearchedRoutes data={this.state.data} user={this.props.user}></SearchedRoutes>)
         else
             return (
-                <div className="d-flex justify-content-center aling-items-center search-container">
+                <div className="d-flex justify-content-center aling-items-center search-container home-page">
                     <div className="my-4 d-flex flex-row justify-content-between align-items-center row container-fluid col-10">
                         <div className="col-4 d-flex flex-column justify-content-between align-items-center">
                             <span className="my-2 location-info">Departure</span>

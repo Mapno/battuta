@@ -24,7 +24,7 @@ class Navbar extends Component {
     render() {
         const user = this.state.loggedInUser
         let createLink;
-        if (this.hasCarrierRole(user)) createLink = <li className="nav-item active"><Link to="/maps" className="nav-link">New route</Link></li>
+        if (true) createLink = <li className="nav-item active"><Link to="/maps" className="nav-link">New route</Link></li>
         if (user) {
             return (
                 <nav className="navbar bg-dark navbar-expand-lg navbar-dark">

@@ -54,8 +54,8 @@ class App extends Component {
 
     if (this.state.loggedInUser) {
       return (
-        <div className="">
-          <header className="">
+        <div className="wrapper">
+          <header >
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
           <Route exact path='/' render={() => <HomePage user={this.state.loggedInUser}></HomePage>}></Route>
@@ -69,8 +69,8 @@ class App extends Component {
       );
     } else {
       return (
-        <div className="">
-          <header className="">
+        <div className="wrapper">
+          <header >
             <Navbar userInSession={this.state.loggedInUser} logout={this.logout} />
           </header>
           <Route exact path='/' render={() => <HomePage></HomePage>}></Route>
