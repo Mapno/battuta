@@ -4,6 +4,7 @@ import DateInput from '../search/DateInput';
 import RouteService from '../routes/RouteService';
 import SearchedRoutes from '../routes/SearchedRoutes';
 import Button from '@material-ui/core/Button';
+import { Redirect } from 'react-router-dom';
 
 class HomePage extends Component {
     constructor(props) {
@@ -13,7 +14,8 @@ class HomePage extends Component {
             arrival: {},
             date: {},
             render: false,
-            data: {}
+            data: {},
+            redirect: false
         }
         this.service = new RouteService()
     }
@@ -32,14 +34,19 @@ class HomePage extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const { departure, arrival, date } = this.state;
-        this.service.search(arrival, departure, date)
-            .then(data => this.setState({ data }))
-            .then(() => this.setState({ render: true }))
-            .catch(e => console.log(e));
+        if (this.props.user) {
+            const { departure, arrival, date } = this.state;
+            this.service.search(arrival, departure, date)
+                .then(data => this.setState({ data }))
+                .then(() => this.setState({ render: true }))
+                .catch(e => console.log(e));
+        } else {
+            this.setState({ redirect: true })
+        }
     };
 
     render() {
+        if (this.state.redirect) return <Redirect to="/login" />
         if (this.state.render)
             return (<SearchedRoutes data={this.state.data} user={this.props.user}></SearchedRoutes>)
         else
