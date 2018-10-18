@@ -22,6 +22,7 @@ class UserSelect extends React.Component {
                 value={selectedUser}
                 onChange={this.handleChange}
                 onInputChange={this.props.findUsers}
+                style={{width: "6vw"}}
             />
         );
     }

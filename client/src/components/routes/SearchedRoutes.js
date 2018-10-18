@@ -23,8 +23,8 @@ class SearchedRoutes extends React.Component {
             return (<NewShipment selectedRoute={this.state.selectedRoute} user={this.props.user}></NewShipment>)
         else
             return (
-                <div className="d-flex flex-column align-items-center justify-content-center mx-5">
-                    <h3 className="mt-3">Routes</h3>
+                <div className="d-flex flex-column align-items-center justify-content-center search-page">
+                    <h3 className="mt-3 location-info">Routes</h3>
                     {data.map(e => <RouteCard route={e} key={e.driver._id} user={this.props.user} handleBook={this.handleBook}></RouteCard>)}
                 </div>
             )

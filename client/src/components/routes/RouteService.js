@@ -8,8 +8,8 @@ class RouteService {
     });
   }
 
-  create = (arrival, departure, date, space) => {
-    return this.service.post("/create", { arrival, departure, date, space })
+  create = (arrival, departure, date, space, price) => {
+    return this.service.post("/create", { arrival, departure, date, space, price })
       .then(res => res.data)
       .catch(error => console.log(error));
   };

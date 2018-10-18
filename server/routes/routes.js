@@ -4,7 +4,7 @@ const Route = require("../models/Route");
 const Package = require("../models/Package");
 
 router.post("/create", (req, res, next) => {
-  const { arrival, departure, date, space } = req.body;
+  const { arrival, departure, date, space, price } = req.body;
   const user = req.user._id;
   const arrivalGeojson = {
     name: arrival.address,
@@ -25,7 +25,8 @@ router.post("/create", (req, res, next) => {
     departure: departureGeojson,
     departureTime: date,
     aviableSpace: space,
-    driver: user
+    driver: user,
+    price
   })
     .save()
     .then(route => res.status(200).json(route))

@@ -136,10 +136,18 @@ input[type="text"]#space {
     width: 70%;
 }
 
-.home-page {
+.search-page {
     background-image: url("https://res.cloudinary.com/df8e6laxu/image/upload/v1539869616/thomas-habr-185321-unsplash.jpg");
-    height: 70vh;
+    height: 94vh;
     object-fit: contain;
     background-size: cover;
     background-position-y: center;
+}
+
+.navbar{
+    height: 6vh;
+}
+
+.create-label{
+    font-weight: bold;
 }

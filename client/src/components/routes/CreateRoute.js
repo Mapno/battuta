@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import InputLabel from '@material-ui/core/InputLabel';
 import Card from '@material-ui/core/Card';
+import Input from '@material-ui/core/Input';
+
 
 
 export class CreateRoute extends React.Component {
@@ -19,7 +21,8 @@ export class CreateRoute extends React.Component {
             date: {},
             carrierForm: false,
             space: 0,
-            redirect: false
+            redirect: false,
+            price: 0
         };
         this.service = new RouteService();
     };
@@ -49,10 +52,15 @@ export class CreateRoute extends React.Component {
             this.setState({ space })
     };
 
+    handlePrice(price) {
+        if (typeof price === Number)
+            this.setState({ price })
+    };
+
     handleSubmit = (event) => {
         event.preventDefault();
-        const { arrival, departure, date, space } = this.state;
-        this.service.create(arrival, departure, date, space)
+        const { arrival, departure, date, space, price } = this.state;
+        this.service.create(arrival, departure, date, space, price)
             .then(e => this.setState({ redirect: true }))
     };
 
@@ -66,11 +74,15 @@ export class CreateRoute extends React.Component {
                         <Grid container spacing={16} direction="row" alignItems="stretch" justify="space-around" style={{ marginTop: "2vh", marginBottom: "2vh" }}>
                             <Grid item lg={5} container alignItems="center" justify="space-around" direction="column">
                                 <Grid style={{ width: "80%" }}>
-                                    <InputLabel className="my-2 location-info" style={{ width: "100%" }}>Departure date &amp; time</InputLabel>
+                                    <InputLabel className="my-2 create-label" style={{ width: "100%" }}>Departure date &amp; time</InputLabel>
                                     <DateInput handleDate={this.handleDate} ></DateInput>
                                 </Grid>
                                 <Grid style={{ width: "80%" }}>
-                                    <InputLabel className="my-2 location-info">Available space</InputLabel>
+                                    <InputLabel className="my-2 create-label" style={{ width: "100%" }}>Price/m²</InputLabel>
+                                    <Input onChange={e => this.handlePrice(e.currentTarget.value)} ></Input>
+                                </Grid>
+                                <Grid style={{ width: "80%" }}>
+                                    <InputLabel className="my-2 create-label">Available space</InputLabel>
                                     <Grid className="d-flex flex-row justify-content-center align-items-center space-wrapper" style={{ width: "100%" }}>
                                         <input type="text" placeholder="meters" id="space" onChange={e => this.handleSpace(e.currentTarget.value)} />
                                         <input type="text" id="spacetwo" value="m²" disabled />
@@ -96,11 +108,11 @@ export class CreateRoute extends React.Component {
                         <Grid container spacing={16} direction="row" alignItems="stretch" justify="space-around" style={{ marginTop: "2vh", marginBottom: "2vh" }}>
                             <Grid item lg={5} container alignItems="center" justify="space-around" direction="column">
                                 <Grid style={{ zIndex: 3, width: "80%" }}>
-                                    <InputLabel style={{ marginBottom: "2vh" }} className="my-2 location-info">Departure</InputLabel>
+                                    <InputLabel style={{ marginBottom: "2vh" }} className="my-2 create-label">Departure</InputLabel>
                                     <LocationSearchInput style={{ marginBottom: "2vh" }} handleSelect={this.handleSelect} departure={true} resetClick={this.resetClick} place={this.state.departure}></LocationSearchInput>
                                 </Grid>
                                 <Grid style={{ zIndex: 2, width: "80%" }}>
-                                    <InputLabel style={{ marginBottom: "2vh" }} className="my-2 location-info">Arrival</InputLabel>
+                                    <InputLabel style={{ marginBottom: "2vh" }} className="my-2 create-label">Arrival</InputLabel>
                                     <LocationSearchInput style={{ marginBottom: "2vh" }} handleSelect={this.handleSelect} departure={false} resetClick={this.resetClick} place={this.state.arrival}></LocationSearchInput>
                                 </Grid>
                                 <Grid container justify="flex-end" style={{paddingRight: "3vw"}}>

@@ -21,6 +21,7 @@ const routeSchema = new Schema(
         },
         stops: [{ type: { type: String }, coordinates: [Number] }],
         aviableSpace: Number,
+        price: Number
     },
     {
         timestamps: {

@@ -3,6 +3,12 @@ import AuthService from '../auth/AuthService';
 import UserSelect from '../search/UserSelect';
 import RouteService from '../routes/RouteService';
 import { Redirect } from 'react-router-dom';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
 
 class NewShipment extends React.Component {
     constructor() {
@@ -62,29 +68,25 @@ class NewShipment extends React.Component {
             return <Redirect to="/my-packages"></Redirect>
         else
             return (
-                <div>
-                    <form onSubmit={this.handleSubmit}>
-                        <div>
-                            <label htmlFor="description">Description</label>
-                            <input type="text" name="description" size="100" onChange={e => this.handleChange(e)}></input>
-                        </div>
-                        <div>
-                            <label htmlFor="size">Size</label>
-                            <input type="number" name="size" onChange={e => this.handleChange(e)}></input>
-                        </div>
-                        <div>
-                            <label htmlFor="weight">Weight</label>
-                            <input type="number" name="weight" onChange={e => this.handleChange(e)}></input>
-                        </div>
-                        <div>
-                            <label htmlFor="receiver">Receiver</label>
-                            <UserSelect users={usersArray} findUsers={this.findUsers} name="receviver" handleReceiverSelect={this.handleReceiverSelect} />
-                        </div>
-                        <div>
-                            <button type="submit">Book shipment</button>
-                        </div>
-                    </form>
-                </div>
+                <Grid container align="center" justify="center" direction="column" className="search-page">
+                    <FormControl style={{ marginTop: "2vh"}}>
+                        <InputLabel htmlFor="description">Description</InputLabel>
+                        <Input type="text" name="description" size="100" onChange={e => this.handleChange(e)}></Input>
+                    </FormControl>
+                    <FormControl style={{ marginTop: "2vh"}}>
+                        <InputLabel htmlFor="size">Size</InputLabel>
+                        <Input type="number" name="size" onChange={e => this.handleChange(e)}></Input>
+                    </FormControl>
+                    <FormControl style={{ marginTop: "2vh"}}>
+                        <InputLabel htmlFor="weight">Weight</InputLabel>
+                        <Input type="number" name="weight" onChange={e => this.handleChange(e)}></Input>
+                    </FormControl>
+                    <FormControl style={{ marginTop: "2vh", width: "28vw"}}>
+                        <InputLabel htmlFor="receiver">Receiver</InputLabel>
+                        <UserSelect users={usersArray} findUsers={this.findUsers} name="receviver" handleReceiverSelect={this.handleReceiverSelect} />
+                    </FormControl>
+                    <Button color="primary" variant="contained" onClick={this.handleSubmit}>Book shipment</Button>
+                </Grid>
             )
     }
 }
