@@ -119,6 +119,8 @@ router.post("/find", (req, res, next) => {
 router.put('/accept', (req,res,next) => {
   const{ id } = req.body
   Package.findByIdAndUpdate({ _id: id }, { status: 'Accepted' }, {new: true})
+    .populate('route')
+    .then(package => Route.findByIdAndUpdate({_id: package.route._id}, {aviableSpace: {$inc: -package.size}}))
     .then(package => res.status(200).json(package))
     .catch(error => next(error));
 })
