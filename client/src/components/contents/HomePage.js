@@ -3,6 +3,7 @@ import LocationSearchInput from '../search/LocationSearchInput'
 import DateInput from '../search/DateInput';
 import RouteService from '../routes/RouteService';
 import SearchedRoutes from '../routes/SearchedRoutes';
+import Button from '@material-ui/core/Button';
 
 class HomePage extends Component {
     constructor(props) {
@@ -57,9 +58,9 @@ class HomePage extends Component {
                             <span className="my-2 location-info">Date</span>
                             <DateInput handleDate={this.handleDate}></DateInput>
                         </div>
-                        <form className="col-1 d-flex flex-column justify-content-between align-items-center mt-5" onSubmit={this.handleSubmit}>
-                            <button className="btn btn-dark">Search</button>
-                        </form>
+                        <div className="col-1 d-flex flex-column justify-content-between align-items-center mt-5">
+                            <Button color="primary" variant="contained" onClick={this.handleSubmit}>Search</Button>
+                        </div>
                     </div>
                 </div>
             );
