@@ -118,7 +118,14 @@ router.post("/find", (req, res, next) => {
 
 router.put('/accept', (req,res,next) => {
   const{ id } = req.body
-  Package.findByIdAndUpdate({ _id: id }, { status: 'Accepted' })
+  Package.findByIdAndUpdate({ _id: id }, { status: 'Accepted' }, {new: true})
+    .then(package => res.status(200).json(package))
+    .catch(error => next(error));
+})
+
+router.put('/reject', (req,res,next) => {
+  const{ id } = req.body
+  Package.findByIdAndUpdate({ _id: id }, { status: 'Rejected' }, {new: true})
     .then(package => res.status(200).json(package))
     .catch(error => next(error));
 })

@@ -12,15 +12,17 @@ class MyPackages extends React.Component {
                 asOwner: [],
                 asReceiver: [],
                 asShipper: []
-            }
+            },
+            refresh: false
         }
         this.service = new RouteService();
     }
 
     findPackages = () => {
-        const { user } = this.state
+        const { user } = this.state;
+        const refresh = !this.state.refresh;
         this.service.find(user)
-            .then(packages => this.setState({ packages }))
+            .then(packages => this.setState({ packages, refresh }))
     }
 
     componentDidMount() {
@@ -28,7 +30,7 @@ class MyPackages extends React.Component {
     }
 
     render() {
-        const { packages } = this.state;
+        const { packages, refresh } = this.state;
         if (packages['asOwner'].length > 0 || packages['asShipper'].length > 0 || packages['asReceiver'].length > 0)
             return (
                 <Grid
@@ -36,7 +38,7 @@ class MyPackages extends React.Component {
                 alignItems="center"
                 justify="center"
                 >
-                    <PackageCard packages={packages} findPackages={this.findPackages}></PackageCard>
+                    <PackageCard packages={packages} findPackages={this.findPackages} refresh={refresh}></PackageCard>
                 </Grid>
             )
         else

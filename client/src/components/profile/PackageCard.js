@@ -6,22 +6,36 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import StatusCard from './StatusCard';
+
+
 
 class PackageCard extends React.Component {
     constructor() {
         super();
         this.service = new RouteService();
-    }
+        this.state = {
+            packages: null
+        };
+    };
 
-    handleAccept(value) {
+    handleAccept = (value) => {
         this.service.accept(value)
             .then(() => this.props.findPackages())
     }
 
+    handleReject = (value) =>  {
+        this.service.reject(value)
+            .then(() => this.props.findPackages())
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ ...this.state, packages: nextProps["packages"] })
+    }
+
     render() {
-        const { packages } = this.props
+        const { packages } = this.props;
         return (
             <Grid style={{ marginBottom: "4vh" }} >
                 {Object.keys(packages).map(key => {
@@ -40,7 +54,7 @@ class PackageCard extends React.Component {
                                             <TableCell data-field="owner">Owner</TableCell>
                                             <TableCell data-field="receiver">Receiver</TableCell>
                                             <TableCell data-field="shipper">Shipper</TableCell>
-                                            <TableCell data-field="shipper">Status</TableCell>
+                                            <TableCell data-field="shipper" style={{ textAlign: "center" }}>Status</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     {packages[key].map(shipment => {
@@ -54,14 +68,7 @@ class PackageCard extends React.Component {
                                                 <TableCell>{shipment.owner.username}</TableCell>
                                                 <TableCell>{shipment.receiver.username}</TableCell>
                                                 <TableCell>{shipment.carrier.username}</TableCell>
-                                                <TableCell>{shipment.status}</TableCell>
-                                                {key === 'asShipper' && shipment.status === 'Pending' ?
-                                                    <Button
-                                                        variant="contained"
-                                                        color="primary"
-                                                        style={{ marginTop: "0.5vh" }}
-                                                        onClick={(event) => this.handleAccept(event.currentTarget.value)}
-                                                        value={shipment._id}>Accept shimpent</Button> : null}
+                                                <TableCell style={{ textAlign: "center" }}><StatusCard status={shipment.status} handleAccept={this.handleAccept} handleReject={this.handleReject} id={shipment._id}/></TableCell>
                                             </TableRow>
                                         </TableBody>
                                     })}

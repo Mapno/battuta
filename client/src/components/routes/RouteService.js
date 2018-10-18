@@ -43,6 +43,12 @@ class RouteService {
       .then(res => res.data)
       .catch(error => console.log(error));
   }
+
+  reject = id => {
+    return this.service.put('/reject', { id })
+    .then(res => res.data)
+    .catch(error => console.log(error));
+  }
 }
 
 export default RouteService;
