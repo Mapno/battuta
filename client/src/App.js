@@ -50,7 +50,6 @@ class App extends Component {
 
   render() {
     this.fetchUser()
-    console.log(process.env.REACT_APP_API_URL)
 
     if (this.state.loggedInUser) {
       return (
