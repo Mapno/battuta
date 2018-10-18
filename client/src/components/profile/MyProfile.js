@@ -4,6 +4,8 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from '@material-ui/core/Grid';
+import Card from '@material-ui/core/Card';
+
 
 
 class MyProfile extends React.Component {
@@ -24,36 +26,39 @@ class MyProfile extends React.Component {
 		let vehicle;
 		if (user.vehicle) {
 			vehicle = <TableRow>
-				<TableCell>Vehicle</TableCell>
-				<TableCell>{user.vehicle.brand} {user.vehicle.model} - {user.vehicle.color} - {user.vehicle.registrationNumber}</TableCell>
+				<TableCell><span className="profile-data">Vehicle</span></TableCell>
+				<TableCell><span className="profile-data">{user.vehicle.brand} {user.vehicle.model} - {user.vehicle.color} - {user.vehicle.registrationNumber}</span></TableCell>
 			</TableRow>
 		}
 
 
 		return (
-			<Grid style={{ margin: "6vh" }} container spacing={16}>
-				<Grid item xs={6}>
-						<h4 className="center-align">Profile</h4>
-						<Table className="centered">
-							<caption></caption>
-							<TableBody>
-								<TableRow>
-									<TableCell>Name</TableCell>
-									<TableCell>{user.username}</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell>Email</TableCell>
-									<TableCell>{user.email}</TableCell>
-								</TableRow>
-								<TableRow>
-									<TableCell>Roles</TableCell>
-									<TableCell>{roles}</TableCell>
-								</TableRow>
-								{vehicle}
-							</TableBody>
-						</Table>
+			<div className="my-profile d-flex justify-content-center align-items-center flex-column">
+				<h4 className="center-align">Profile</h4>
+				<Grid style={{ margin: "6vh" }} container justify="center">
+					<Card style={{ backgroundColor: "#ffffffbf" }}>
+						<Grid style={{ backgroundColor: "transparent" }}>
+							<Table className="centered">
+								<TableBody>
+									<TableRow>
+										<TableCell><span className="profile-data">Name</span></TableCell>
+										<TableCell><span className="profile-data">{user.username}</span></TableCell>
+									</TableRow>
+									<TableRow>
+										<TableCell><span className="profile-data">Email</span></TableCell>
+										<TableCell><span className="profile-data">{user.email}</span></TableCell>
+									</TableRow>
+									<TableRow>
+										<TableCell><span className="profile-data">Roles</span></TableCell>
+										<TableCell><span className="profile-data">{roles}</span></TableCell>
+									</TableRow>
+									{vehicle}
+								</TableBody>
+							</Table>
+						</Grid>
+					</Card>
 				</Grid>
-			</Grid>
+			</div>
 		)
 	}
 

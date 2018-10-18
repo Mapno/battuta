@@ -35,19 +35,24 @@ class MyPackages extends React.Component {
         const { packages, refresh } = this.state;
         if (packages['asOwner'].length > 0 || packages['asShipper'].length > 0 || packages['asReceiver'].length > 0)
             return (
-                <Grid
-                    container
-                    alignItems="center"
-                    justify="center"
-                >
-                    <PackageCard packages={packages} findPackages={this.findPackages} refresh={refresh}></PackageCard>
-                </Grid>
+                <div className="my-packages">
+                    <Grid
+                        container
+                        alignItems="center"
+                        justify="center"
+                    >
+                        <PackageCard packages={packages} findPackages={this.findPackages} refresh={refresh}></PackageCard>
+                    </Grid>
+                </div>
             )
         else
             return (
-                <Grid container justify="center" className="my-5">
-                    <h5>You have no shipments so far.<br />Search for a route to start enjoying Battuta!</h5>
-                </Grid>
+                <div className="my-packages">
+
+                    <Grid container justify="center" className="py-5">
+                        <h5>You have no shipments so far.<br />Search for a route to start enjoying Battuta!</h5>
+                    </Grid>
+                </div>
             )
     }
 }

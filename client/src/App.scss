@@ -144,10 +144,46 @@ input[type="text"]#space {
     background-position-y: center;
 }
 
+.my-packages {
+    background-image: url("https://res.cloudinary.com/df8e6laxu/image/upload/v1539869616/devin-avery-542010-unsplash.jpg");
+    height: 94vh;
+    object-fit: contain;
+    background-size: cover;
+    background-position-y: center;
+}
+
+.create-route {
+    background-image: url("https://res.cloudinary.com/df8e6laxu/image/upload/v1539869615/background-background-image-blue-sky-1054218.jpg");
+    height: 94vh;
+    object-fit: contain;
+    background-size: cover;
+    background-position-y: center;
+}
+
+.my-profile {
+    background-image: url("https://res.cloudinary.com/df8e6laxu/image/upload/v1539869616/thomas-habr-185321-unsplash.jpg");
+    height: 94vh;
+    object-fit: contain;
+    background-size: cover;
+    background-position-y: center;
+}
+
+.auth {
+    background-image: url("https://res.cloudinary.com/df8e6laxu/image/upload/v1539883445/jeremy-bishop-527439-unsplash.jpg");
+    height: 94vh;
+    object-fit: contain;
+    background-size: cover;
+    background-position-y: center;
+}
+
 .navbar{
     height: 6vh;
 }
 
 .create-label{
     font-weight: bold;
+}
+
+.profile-data {
+    font-size: 2vh;
 }

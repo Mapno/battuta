@@ -63,7 +63,6 @@ class App extends Component {
           <Route exact path='/maps' render={() => <CreateRoute></CreateRoute>} />
           <Route exact path="/my-packages" render={() => <MyPackages user={this.state.loggedInUser}></MyPackages>} />
           <Route exact path="/profile" render={() => <MyProfile user={this.state.loggedInUser}></MyProfile>} />
-          <Footer></Footer>
         </div>
       );
     } else {
@@ -76,7 +75,6 @@ class App extends Component {
           <Route exact path='/signup' render={() => <Signup getUser={this.getTheUser} />} />
           <Route exact path='/login' render={() => <Login getUser={this.getTheUser} />} />
           <Route exact path='/maps' render={() => <CreateRoute></CreateRoute>} />
-          <Footer></Footer>
         </div>
       );
     }
