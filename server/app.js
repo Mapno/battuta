@@ -23,7 +23,9 @@ const app = express();
 
 const whitelist = [
     'http://localhost:3000',
-    'https://battuta-mapno.herokuapp.com'
+    'https://battuta-mapno.herokuapp.com',
+    'http://localhost:3010'
+
 ];
 const corsOptions = {
     origin: function (origin, callback) {
