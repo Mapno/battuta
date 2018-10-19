@@ -6,7 +6,7 @@ Battuta is a web app inspired by BlaBlaCar made for shippers to maximize their t
 
 ## Installing
 
-The website is live at [Battuta](battuta-mapno.herokuapp.com).
+The website is live at [Battuta](https://battuta-mapno.herokuapp.com).
 
 To run Battuta locally.
 
