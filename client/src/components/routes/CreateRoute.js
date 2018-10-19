@@ -47,13 +47,11 @@ export class CreateRoute extends React.Component {
     };
 
     handleSpace(space) {
-        if (typeof space === Number)
-            this.setState({ space })
+        this.setState({ space })
     };
 
     handlePrice(price) {
-        if (typeof price === Number)
-            this.setState({ price })
+        this.setState({ price })
     };
 
     handleSubmit = (event) => {

@@ -12,7 +12,7 @@ class RouteCard extends React.Component {
 
     render() {
         const route = this.props
-        const { arrival, departure, aviableSpace, driver, departureTime } = this.props.route;
+        const { arrival, departure, aviableSpace, driver, departureTime, price } = this.props.route;
         const date = departureTime.split('').splice(0, 10).join('').split('-').sort(() => 1).join('-')
         const time = departureTime.split('').splice(11, 5).join('')
         return (
@@ -37,7 +37,7 @@ class RouteCard extends React.Component {
                                 <TableCell>{arrival.name}</TableCell>
                                 <TableCell>{date}</TableCell>
                                 <TableCell>{time}</TableCell>
-                                <TableCell>20€</TableCell>
+                                <TableCell>{price}</TableCell>
                                 <TableCell>{aviableSpace}</TableCell>
                                 <TableCell><Button onClick={() => this.props.handleBook(route)} color="primary" variant="contained">Book shipment</Button></TableCell>
                             </TableRow>

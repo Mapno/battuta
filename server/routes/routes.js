@@ -37,6 +37,7 @@ router.post("/search", (req, res, next) => {
   const earthRadius = 6378.15214;
   const radius = 10;
   const { arrival, departure, date } = req.body;
+  console.log(req.body)
   Route.find({
     "departure.location": {
       $geoWithin: {

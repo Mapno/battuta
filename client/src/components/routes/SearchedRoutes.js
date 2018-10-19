@@ -19,6 +19,7 @@ class SearchedRoutes extends React.Component {
 
     render() {
         const { data } = this.state
+        console.log(data)
         if (this.state.redirect)
             return (<NewShipment selectedRoute={this.state.selectedRoute} user={this.props.user}></NewShipment>)
         else

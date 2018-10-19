@@ -66,7 +66,7 @@ class PackageCard extends React.Component {
                                                 <TableCell>{shipment.owner.username}</TableCell>
                                                 <TableCell>{shipment.receiver.username}</TableCell>
                                                 <TableCell>{shipment.carrier.username}</TableCell>
-                                                <TableCell style={{ textAlign: "center" }}><StatusCard status={shipment.status} handleAccept={this.handleAccept} handleReject={this.handleReject} id={shipment._id}/></TableCell>
+                                                <TableCell style={{ textAlign: "center" }}><StatusCard status={shipment.status} handleAccept={this.handleAccept} handleReject={this.handleReject} id={shipment._id} keyVariable={key}/></TableCell>
                                             </TableRow>
                                         </TableBody>
                                     })}

@@ -6,7 +6,7 @@ import Signup from './components/auth/Signup';
 import Login from './components/auth/Login';
 import AuthService from './components/auth/AuthService';
 import HomePage from './components/contents/HomePage';
-import Footer from './components/footer/Footer';
+// import Footer from './components/footer/Footer';
 import { CreateRoute } from './components/routes/CreateRoute';
 import MyPackages from './components/profile/MyPackages';
 import MyProfile from './components/profile/MyProfile';

@@ -24,15 +24,19 @@ class StatusCard extends React.Component {
 
     render() {
         const { status } = this.state;
-        const { id } = this.props;
+        const { id, keyVariable } = this.props;
 
-        if (status === 'Pending')
-            return (
-                <div>
-                    <Button color="primary" variant="contained" onClick={e => this.props.handleAccept(e.currentTarget.value)} value={id} >Accept</Button>
-                    <Button color="secondary" variant="contained" onClick={e => this.props.handleReject(e.currentTarget.value)} value={id} >Reject</Button>
-                </div>
-            )
+        if (status === 'Pending') {
+            if (keyVariable === 'asShipper')
+                return (
+                    <div>
+                        <Button color="primary" variant="contained" onClick={e => this.props.handleAccept(e.currentTarget.value)} value={id} >Accept</Button>
+                        <Button color="secondary" variant="contained" onClick={e => this.props.handleReject(e.currentTarget.value)} value={id} >Reject</Button>
+                    </div>
+                )
+            else
+                return <Chip label="Pending" />
+        }
         else if (status === 'Accepted')
             return (
                 <Chip label="Accepted" color="primary" icon={<DoneIcon />} />
