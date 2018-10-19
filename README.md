@@ -6,9 +6,9 @@ Battuta is a web app inspired by BlaBlaCar made for shippers to maximize their t
 
 ## Installing
 
-The website is live at * battuta-mapno.herokuapp.com - Battuta
+The website is live at [Battuta](battuta-mapno.herokuapp.com).
 
-To run Battuta locally
+To run Battuta locally.
 
 ```
 Fork this repository
@@ -27,4 +27,4 @@ npm run start
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
